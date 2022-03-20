@@ -8,7 +8,7 @@ import java.util.List;
 public class Java1 {
     //Find words by splitting text
     public static List<String> splitText(String s) {
-        String[] text_splitted = s.split("[\\s,!?.]+");
+        String[] text_splitted = s.split("[\\s,!?.;:]+");
         List<String> words = new ArrayList<>();
         for (int i = 0; i < text_splitted.length; i++) {
             if (text_splitted[i].matches("[a-zA-Z]+"))
