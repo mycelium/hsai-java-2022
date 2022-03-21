@@ -13,14 +13,6 @@ repositories {
     mavenCentral()
 }
 
-buildscript {
-    dependencies {
-        classpath("io.arrow-kt.analysis.kotlin:io.arrow-kt.analysis.kotlin.gradle.plugin:2.0")
-    }
-}
-
-apply(plugin = "io.arrow-kt.analysis.kotlin")
-
 dependencies {
     testImplementation(kotlin("test"))
     // Arrow-kt

@@ -6,7 +6,7 @@ import arrow.core.right
 import arrow.fx.coroutines.parSequence
 import java.io.File
 
-suspend fun getFilesToProcessFolder(path: File, folderOpts: FolderOpts): Either<FileError, ToProcess> =
+suspend fun getFilesToProcessFolder(path: File, folderOpts: FolderOpts): Either<GrekError, ToProcess> =
     if (path.isDirectory) {
         val files =
             if (folderOpts.recursive)
@@ -16,11 +16,11 @@ suspend fun getFilesToProcessFolder(path: File, folderOpts: FolderOpts): Either<
         val isNotExcluded = { file: File -> !folderOpts.exclude.contains(file.name) }
         val isNotHiddenFile = { file: File -> file.isFile && !file.isHidden }
         val filesToProcess = files.filter { isNotHiddenFile(it) && isNotExcluded(it) }.toList()
-        Either.Right(ToProcess.MultipleFiles(filesToProcess))
+        ToProcess.MultipleFiles(filesToProcess).right()
     } else
-        Either.Left(FileError.PathIsNotDirectory("Path is not a directory: ${path.absolutePath}"))
+        GrekError.PathIsNotDirectory("Path is not a directory: ${path.absolutePath}").left()
 
-suspend fun <R> R.getFilesToProcess(): Either<FileError, ToProcess> where R : HasOptions {
+suspend fun <R> R.getFilesToProcess(): Either<GrekError, ToProcess> where R : HasOptions {
     val fileOpts = this.filesOpts
     val path = File(fileOpts.path)
     return if (path.exists()) {
@@ -29,7 +29,7 @@ suspend fun <R> R.getFilesToProcess(): Either<FileError, ToProcess> where R : Ha
         else
             getFilesToProcessFolder(path, fileOpts.folderOpts)
     } else
-        FileError.PathNotExists("Path doesn't exists: ${fileOpts.path}").left()
+        GrekError.PathNotExists("Path doesn't exists: ${fileOpts.path}").left()
 }
 
 suspend fun <R> R.processFile(file: File): ProcessedFile where R : HasOptions {

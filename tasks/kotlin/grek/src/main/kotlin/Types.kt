@@ -2,9 +2,15 @@ package grek
 
 import java.io.File
 
-sealed class FileError {
-    class PathNotExists(val str: String) : FileError()
-    class PathIsNotDirectory(val str: String) : FileError()
+sealed class GrekError {
+    abstract fun render(): String;
+    class PathNotExists(val str: String) : GrekError() {
+        override fun render(): String = str
+    }
+
+    class PathIsNotDirectory(val str: String) : GrekError() {
+        override fun render(): String = str
+    }
 }
 
 data class FilesOpts(val path: String, val folderOpts: FolderOpts)

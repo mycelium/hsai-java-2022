@@ -19,7 +19,7 @@ suspend fun <R> R.renderGrek(file: ProcessedFile, printFileName: Boolean) where 
     }
 
 
-suspend fun <R> R.doGrek(): Either<FileError, Unit> where R : HasOptions = either {
+suspend fun <R> R.doGrek(): Either<GrekError, Unit> where R : HasOptions = either<GrekError, Unit> {
     val toProcess = getFilesToProcess().bind()
     val files = toProcess.toFiles()
     val grekkedFiles = processFiles(files)
@@ -30,6 +30,6 @@ suspend fun <R> R.doGrek(): Either<FileError, Unit> where R : HasOptions = eithe
     for (grekkedFile in grekkedFiles) {
         renderGrek(grekkedFile, printFileName)
     }
-}
+}.tapLeft { grekError: GrekError -> println(grekError.render()) }
 
 fun main(args: Array<String>) = GrekCli().main(args)
