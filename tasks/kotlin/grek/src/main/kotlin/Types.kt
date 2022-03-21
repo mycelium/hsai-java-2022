@@ -41,10 +41,10 @@ data class Options(
 
 // ReaderT imitation
 interface Reader<Env> {
-    val env: Env
+    val ask: Env
 
     companion object {
-        private class ReaderImpl<Env>(override val env: Env) : Reader<Env>
+        private class ReaderImpl<Env>(override val ask: Env) : Reader<Env>
 
         fun <Env> runReader(env: Env): Reader<Env> = ReaderImpl(env)
     }

@@ -21,7 +21,7 @@ suspend fun getFilesToProcessFolder(path: File, folderOpts: FolderOpts): Either<
         GrekError.PathIsNotDirectory("Path is not a directory: ${path.absolutePath}").left()
 
 suspend fun <R> R.getFilesToProcess(): Either<GrekError, ToProcess> where R : Reader<Options> {
-    val fileOpts = this.env.filesOpts
+    val fileOpts = this.ask.filesOpts
     val path = File(fileOpts.path)
     return if (path.exists()) {
         if (!path.isDirectory)

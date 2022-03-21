@@ -14,7 +14,7 @@ suspend fun <R> R.renderGrek(file: ProcessedFile, printFileName: Boolean) where 
         if (printFileName) println(file.filePath)
 
         for (line in lines) {
-            println(this.env.renderOpts.renderLine(line))
+            println(this.ask.renderOpts.renderLine(line))
         }
     }
 

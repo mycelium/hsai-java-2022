@@ -8,11 +8,11 @@ fun <R> R.processContents(contents: List<String>): MatchingLines where R : Reade
     val ixContents = contents.withIndex().toList()
     val processed = ixContents.asSequence()
         // Find lines matching regex
-        .filter { this.env.regexOpt.containsMatchIn(it.value) }
+        .filter { this.ask.regexOpt.containsMatchIn(it.value) }
         // Get windows around matched lines and flatten
         .flatMap { (matchedLineIx) ->
             // Get window before/after that line
-            val (windowCenterIx, window) = ixContents.getWindowAt(matchedLineIx, this.env.windowOpts)
+            val (windowCenterIx, window) = ixContents.getWindowAt(matchedLineIx, this.ask.windowOpts)
             // Mark matched line in window
             window.asSequence().map { (lineIx, line) ->
                 Line(lineIx + 1, line, lineIx == windowCenterIx)
