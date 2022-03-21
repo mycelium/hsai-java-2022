@@ -4,15 +4,15 @@ package grek
 /**
  * Process file (or any List<String>) contents, returning Sequence of processed lines
  */
-fun <R> R.processContents(contents: List<String>): MatchingLines where R : HasOptions {
+fun <R> R.processContents(contents: List<String>): MatchingLines where R : Reader<Options> {
     val ixContents = contents.withIndex().toList()
     val processed = ixContents.asSequence()
         // Find lines matching regex
-        .filter { this.regexOpt.containsMatchIn(it.value) }
+        .filter { this.env.regexOpt.containsMatchIn(it.value) }
         // Get windows around matched lines and flatten
         .flatMap { (matchedLineIx) ->
             // Get window before/after that line
-            val (windowCenterIx, window) = ixContents.getWindowAt(matchedLineIx, this.windowOpts)
+            val (windowCenterIx, window) = ixContents.getWindowAt(matchedLineIx, this.env.windowOpts)
             // Mark matched line in window
             window.asSequence().map { (lineIx, line) ->
                 Line(lineIx + 1, line, lineIx == windowCenterIx)
@@ -33,5 +33,5 @@ fun <R> R.processContents(contents: List<String>): MatchingLines where R : HasOp
     return MatchingLines(processed)
 }
 
-fun <R> R.processFileContents(fileName: String, contents: List<String>): ProcessedFile where R : HasOptions =
+fun <R> R.processFileContents(fileName: String, contents: List<String>): ProcessedFile where R : Reader<Options> =
     ProcessedFile(fileName, processContents(contents))

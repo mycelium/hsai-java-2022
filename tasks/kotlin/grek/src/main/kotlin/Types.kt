@@ -32,12 +32,25 @@ sealed class RenderOpts {
     }
 }
 
-interface HasOptions {
-    val regexOpt: Regex
-    val filesOpts: FilesOpts
-    val windowOpts: WindowOpts
+data class Options(
+    val regexOpt: Regex,
+    val filesOpts: FilesOpts,
+    val windowOpts: WindowOpts,
     val renderOpts: RenderOpts
+)
+
+// ReaderT imitation
+interface Reader<Env> {
+    val env: Env
+
+    companion object {
+        private class ReaderImpl<Env>(override val env: Env) : Reader<Env>
+
+        fun <Env> runReader(env: Env): Reader<Env> = ReaderImpl(env)
+    }
 }
+
+class GrepApp(options: Reader<Options>) : Reader<Options> by options
 
 sealed class ToProcess {
     class SingleFile(val file: File) : ToProcess()

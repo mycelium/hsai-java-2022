@@ -20,8 +20,8 @@ suspend fun getFilesToProcessFolder(path: File, folderOpts: FolderOpts): Either<
     } else
         GrekError.PathIsNotDirectory("Path is not a directory: ${path.absolutePath}").left()
 
-suspend fun <R> R.getFilesToProcess(): Either<GrekError, ToProcess> where R : HasOptions {
-    val fileOpts = this.filesOpts
+suspend fun <R> R.getFilesToProcess(): Either<GrekError, ToProcess> where R : Reader<Options> {
+    val fileOpts = this.env.filesOpts
     val path = File(fileOpts.path)
     return if (path.exists()) {
         if (!path.isDirectory)
@@ -32,10 +32,10 @@ suspend fun <R> R.getFilesToProcess(): Either<GrekError, ToProcess> where R : Ha
         GrekError.PathNotExists("Path doesn't exists: ${fileOpts.path}").left()
 }
 
-suspend fun <R> R.processFile(file: File): ProcessedFile where R : HasOptions {
+suspend fun <R> R.processFile(file: File): ProcessedFile where R : Reader<Options> {
     val lines = file.readLines()
-    return processFileContents(file.absolutePath, lines)
+    return processFileContents(file.canonicalPath, lines)
 }
 
-suspend fun <R> R.processFiles(files: List<File>) where R : HasOptions =
+suspend fun <R> R.processFiles(files: List<File>) where R : Reader<Options> =
     files.map { file -> suspend { processFile(file) } }.parSequence()
