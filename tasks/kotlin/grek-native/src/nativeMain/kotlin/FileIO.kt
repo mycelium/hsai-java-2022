@@ -17,8 +17,8 @@ suspend fun <R> R.getFilesToProcessFolder(
             path.listRecursively()
         else
             path.listFiles()
-    val isNotExcluded = { file: FileIO.GPath -> !folderOpts.exclude.contains(file.path) }
-    val filesToProcess = files.filter { it.isFile() && isNotExcluded(it) }.toList()
+    val isNotExcluded = { fileName: String -> !folderOpts.exclude.contains(fileName) }
+    val filesToProcess = files.filter { it.isFile() && isNotExcluded(it.fileName()) }.toList()
     return FilesToProcess.MultipleFiles(filesToProcess).right()
 }
 
