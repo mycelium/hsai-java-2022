@@ -11,7 +11,7 @@ object Main {
     }
     
     println(balance("((a))))".toList))
-    var coins = List(1,5,10);
+    val coins = List(1,5,10);
     print(countChange(17,coins));
   }
 
@@ -43,10 +43,10 @@ object Main {
     if(chars.length==1 && (opening.indexOf(chars.head) > -1 ||closing.indexOf(chars.head) > -1)){
       return false;
     }
-    var k = opening.indexOf(chars.head);
+    val k = opening.indexOf(chars.head);
     if(k > -1){
       if(chars(chars.length-1)==closing(k)){
-          var tmpList = chars.drop(1);
+          val tmpList = chars.drop(1);
           return balance(tmpList.dropRight(1));
       }  
       else{
