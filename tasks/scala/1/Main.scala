@@ -23,7 +23,17 @@ object Main {
    * Exercise 2 Parentheses Balancing
    */
   def balance(chars: List[Char]): Boolean = {
-    chars.filter(_ == '(').length == chars.filter(_ == ')').length
+    def count_parentheses (chars : List[Char], iter : Int) : Boolean = {
+      if (chars.isEmpty) iter == 0
+      else {
+        chars.head match{
+          case '(' => count_parentheses(chars.tail, iter + 1)
+          case ')' => count_parentheses(chars.tail, iter - 1)
+          case _ => count_parentheses(chars.tail, iter)
+        }
+      }
+    }
+    count_parentheses(chars, 0)
   }
 
   /**
