@@ -8,9 +8,9 @@ public class UserInterface {
 	public static void main(String[] args) {
 		String pathForRead, pathForWrite;
 		Scanner in = new Scanner(System.in);
-		System.out.print("Введите путь к входному файлу:");
+		System.out.print("Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє РІС…РѕРґРЅРѕРјСѓ С„Р°Р№Р»Сѓ:");
 		pathForRead = in.next();
-		System.out.print("Введите путь к выходному файлу\n\t(или no, если он не нужен):");
+		System.out.print("Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє РІС‹С…РѕРґРЅРѕРјСѓ С„Р°Р№Р»Сѓ\n\t(РёР»Рё no, РµСЃР»Рё РѕРЅ РЅРµ РЅСѓР¶РµРЅ):");
 		pathForWrite = in.next();
 		try {
 			FileAnalyzer fileAnalyzer;
@@ -22,10 +22,10 @@ public class UserInterface {
 			}
 			fileAnalyzer.analyze();
 		} catch (IOException e) {
-			System.out.println("Неверно указан входной файл. Завершение работы");
+			System.out.println("РќРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅ РІС…РѕРґРЅРѕР№ С„Р°Р№Р». Р—Р°РІРµСЂС€РµРЅРёРµ СЂР°Р±РѕС‚С‹");
 		} finally {
 			in.close();
-			System.out.println("Анализ файла завершен");
+			System.out.println("РђРЅР°Р»РёР· С„Р°Р№Р»Р° Р·Р°РІРµСЂС€РµРЅ");
 		}
 	}
 }

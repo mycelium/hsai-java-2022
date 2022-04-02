@@ -10,12 +10,12 @@ import java.util.TreeMap;
 
 public class FileAnalyzer {
 
-	private File readFile; //входной файл
-	private File writeFile; //выходной файл
-	private int numberOfWords = 0; //количество слов
-	private int numberOfSpaces = 0; //количество пробелов
-	private TreeMap<Integer, Integer> wordsLength = new TreeMap<>(); //ключ - длина слова, значение - количество слов данной длины
-	private static final char notLetters[] = {',', '.', '(', ')', '!', ':', ';', '\"','\'', '\\', '/'}; //некоторые символы, не являющиеся буквами
+	private File readFile; //РІС…РѕРґРЅРѕР№ С„Р°Р№Р»
+	private File writeFile; //РІС‹С…РѕРґРЅРѕР№ С„Р°Р№Р»
+	private int numberOfWords = 0; //РєРѕР»РёС‡РµСЃС‚РІРѕ СЃР»РѕРІ
+	private int numberOfSpaces = 0; //РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕР±РµР»РѕРІ
+	private TreeMap<Integer, Integer> wordsLength = new TreeMap<>(); //РєР»СЋС‡ - РґР»РёРЅР° СЃР»РѕРІР°, Р·РЅР°С‡РµРЅРёРµ - РєРѕР»РёС‡РµСЃС‚РІРѕ СЃР»РѕРІ РґР°РЅРЅРѕР№ РґР»РёРЅС‹
+	private static final char notLetters[] = {',', '.', '(', ')', '!', ':', ';', '\"','\'', '\\', '/'}; //РЅРµРєРѕС‚РѕСЂС‹Рµ СЃРёРјРІРѕР»С‹, РЅРµ СЏРІР»СЏСЋС‰РёРµСЃСЏ Р±СѓРєРІР°РјРё
 	
 	public FileAnalyzer(String read) {
 		readFile = new File(read);
@@ -31,15 +31,15 @@ public class FileAnalyzer {
 		FileReader reader = new FileReader(readFile);
 		try {
 			for(int i = 0; i < readFile.length(); ) {
-				Integer length = 0; //длина считываемого слова
-				char currSymbol = (char)reader.read(); //текущий символ
+				Integer length = 0; //РґР»РёРЅР° СЃС‡РёС‚С‹РІР°РµРјРѕРіРѕ СЃР»РѕРІР°
+				char currSymbol = (char)reader.read(); //С‚РµРєСѓС‰РёР№ СЃРёРјРІРѕР»
 				while(currSymbol != ' ') {
-					if(isLetter(currSymbol)) { //если текущий символ не буква, то он не засчитывается
+					if(isLetter(currSymbol)) { //РµСЃР»Рё С‚РµРєСѓС‰РёР№ СЃРёРјРІРѕР» РЅРµ Р±СѓРєРІР°, С‚Рѕ РѕРЅ РЅРµ Р·Р°СЃС‡РёС‚С‹РІР°РµС‚СЃСЏ
 						length++;
 					}
 					i++;
 					if(i >= readFile.length()) {
-						numberOfSpaces--;//numberOfSpaces++ считает на один пробел больше, если файл не заканчивается на пробел
+						numberOfSpaces--;//numberOfSpaces++ СЃС‡РёС‚Р°РµС‚ РЅР° РѕРґРёРЅ РїСЂРѕР±РµР» Р±РѕР»СЊС€Рµ, РµСЃР»Рё С„Р°Р№Р» РЅРµ Р·Р°РєР°РЅС‡РёРІР°РµС‚СЃСЏ РЅР° РїСЂРѕР±РµР»
 						break;
 					}
 					currSymbol = (char)reader.read();
@@ -82,11 +82,11 @@ public class FileAnalyzer {
 		else {
 			out = new FileOutputStream(writeFile);
 		}
-		out.write(new String("Количество слов в файле:" + numberOfWords + "\n").getBytes());
-		out.write(new String("Количество пробелов в файле:" + numberOfSpaces + "\n").getBytes());
+		out.write(new String("РљРѕР»РёС‡РµСЃС‚РІРѕ СЃР»РѕРІ РІ С„Р°Р№Р»Рµ:" + numberOfWords + "\n").getBytes());
+		out.write(new String("РљРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕР±РµР»РѕРІ РІ С„Р°Р№Р»Рµ:" + numberOfSpaces + "\n").getBytes());
 		Set<Integer> setOfKeys = wordsLength.keySet();
 		for(Integer i : setOfKeys) {
-			out.write(new String("Длина:" + i + ", количество слов:" + wordsLength.get(i) + "\n").getBytes());
+			out.write(new String("Р”Р»РёРЅР°:" + i + ", РєРѕР»РёС‡РµСЃС‚РІРѕ СЃР»РѕРІ:" + wordsLength.get(i) + "\n").getBytes());
 		}
 	}
 }
