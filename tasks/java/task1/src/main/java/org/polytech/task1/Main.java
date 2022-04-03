@@ -2,16 +2,11 @@ package org.polytech.task1;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
-import one.util.streamex.StreamEx;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 class WCCmdArgs {
@@ -37,77 +32,11 @@ class WCCmdArgs {
     }
 }
 
-record WCParams(Set<Character> charsToCount) {
-}
-
-record Tuple<A, B>(A fst, B snd) {
-}
-
-record WCResult(Long spaceCount, Map<Integer, Long> wordPerLetterCount, Map<Character, Long> characterCounts) {
-    public Long WordCount() {
-        return wordPerLetterCount().values().stream().reduce(0L, Long::sum);
-    }
-}
-
-class WC {
-
-    private WCParams wcParams;
-
-    public WC(WCParams wcArgs) {
-        this.wcParams = wcArgs;
-    }
-
-    private static final List<Character> whitespaceEmptyList = List.of((char) 32);
-
-    private Boolean isSpaceWord(List<Character> word) {
-        return word.equals(whitespaceEmptyList);
-    }
-
-    private final Collector<List<Character>, ?, Map<Integer, Long>> wordsCountCollector =
-            Collectors.mapping(
-                    word -> word.stream().filter(Character::isAlphabetic).toList(),
-                    Collectors.groupingBy(List::size, Collectors.counting())
-            );
-
-    private final Collector<List<Character>, ?, Map<Character, Long>> charactersCountCollector =
-            Collectors.flatMapping(
-                    str -> str.stream()
-                            .filter(ch -> wcParams.charsToCount().contains(ch)),
-                    Collectors.groupingBy(Function.identity(), Collectors.counting()));
-
-    private final Collector<List<Character>, ?, Tuple<Map<Integer, Long>, Map<Character, Long>>> charCollectors =
-            Collectors.filtering(word -> !isSpaceWord(word), Collectors.teeing(
-                    wordsCountCollector,
-                    charactersCountCollector,
-                    Tuple::new
-            ));
-
-    private final Collector<List<Character>, ?, Long> spacesCollector =
-            Collectors.filtering(this::isSpaceWord, Collectors.counting());
-
-
-    private final Collector<List<Character>, ?, WCResult> wcCollector =
-            Collectors.teeing(
-                    spacesCollector,
-                    charCollectors,
-                    (spaces, characterWC) ->
-                            new WCResult(spaces, characterWC.fst(), characterWC.snd())
-            );
-
-    public WCResult Run(String input) {
-        return StreamEx.of(input.chars().mapToObj(ch -> (char) ch))
-                // Split to whitespaces and words
-                .collapse(
-                        (character, character2) -> !character.equals(' ') && !character2.equals(' '),
-                        Collectors.toList())
-                .collect(wcCollector);
-    }
-}
 
 public class Main {
     private static WCCmdArgs wcCmdArgs;
 
-    private static String Render(WCResult wcResult) {
+    private static String Render(WC.WCResult wcResult) {
         var builder = new StringBuilder();
         builder.append("Word count: ").append(wcResult.WordCount().toString()).append('\n');
         builder.append("Space count: ").append(wcResult.spaceCount().toString()).append('\n');
@@ -147,7 +76,7 @@ public class Main {
             return;
         }
 
-        var params = new WCParams(wcCmdArgs.CharsToCount());
+        var params = new WC.WCParams(wcCmdArgs.CharsToCount());
         var WC = new WC(params);
 
 
