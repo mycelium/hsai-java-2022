@@ -1,5 +1,5 @@
 package recfun
-import common._
+//import common._
 
 object Main {
   def main(args: Array[String]) {
@@ -9,20 +9,26 @@ object Main {
         print(pascal(col, row) + " ")
       println()
     }
+    println(balance("()()()()())".toList))
+    println(countChange(12,List(2,5,3)))
   }
 
   /**
    * Exercise 1
    */
-  def pascal(c: Int, r: Int): Int = {
-
-  }
-
+  def pascal(c: Int, r: Int): Int = if(c==0 || c==r) 1 else if(c<0 || c>r) 0 else pascal(c-1,r-1)+pascal(c,r-1)
+  
   /**
    * Exercise 2 Parentheses Balancing
    */
-  def balance(chars: List[Char]): Boolean = {
-   
+   def balance(chars: List[Char]): Boolean = {
+     def helper(count:Int, hchars: List[Char]): Boolean = hchars match{
+       case Nil => count==0
+       case '('::rest => helper(count+1, rest)
+       case ')'::rest => if(count>0) helper(count-1, rest) else false
+       case _::rest => helper(count, rest)
+     }
+     helper(0, chars)
   }
 
   /**
@@ -33,6 +39,18 @@ object Main {
    * 2 and 3: 2+3.
    */
   def countChange(money: Int, coins: List[Int]): Int = {
-
+    var res=0
+    def helper(re:Int, rc:List[Int]){
+      if(re!=0){
+        var aval=if(rc.isEmpty) return else rc.head
+        if(re>=aval) {
+        helper(re-rc.head,rc) 
+        helper(re,rc.tail)
+        }
+      }
+      else res=res+1
+    }
+    helper(money, coins)
+    return res
   }
 }
