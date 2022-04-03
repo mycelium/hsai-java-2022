@@ -1,0 +1,47 @@
+2022.04.04 05:28:51 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at c:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\.metals\lsp.trace.json or C:\Users\hkl19\AppData\Local\scalameta\metals\cache\lsp.trace.json
+2022.04.04 05:28:51 INFO  logging to file C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\.metals\metals.log
+2022.04.04 05:28:51 INFO  Started: Metals version 0.11.2 in workspace 'C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2' for client Visual Studio Code 1.66.0.
+2022.04.04 05:28:51 INFO  Parse release: 18
+2022.04.04 05:28:52 INFO  time: initialize in 1.05s
+2022.04.04 05:28:52 WARN  Build server is not auto-connectable.
+2022.04.04 05:28:53 WARN  no build target for: C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\src\main\scala\funsets\FunSets.scala
+4月 04, 2022 5:28:53 上午 org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+警告: Unmatched cancel notification for request id 1
+2022.04.04 05:28:54 WARN  no build target for: C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\src\main\scala\funsets\FunSets.scala
+2022.04.04 05:28:54 INFO  no build target found for C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\src\main\scala\funsets\FunSets.scala. Using presentation compiler with project's scala-library version: 3.1.1
+2022.04.04 05:28:56 INFO  time: code lens generation in 2.04s
+2022.04.04 05:29:10 WARN  no build target for: C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\src\main\scala\funsets\Main.scala
+2022.04.04 05:29:11 WARN  no build target for: C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\src\main\scala\common\package.scala
+2022.04.04 05:29:14 WARN  no build target for: C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\src\main\scala\funsets\Main.scala
+2022.04.04 05:29:21 WARN  no build target for: C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\src\main\scala\funsets\FunSets.scala
+2022.04.04 05:29:44 WARN  no build target for: C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\src\main\scala\funsets\FunSets.scala
+2022.04.04 05:29:45 INFO  shutting down Metals
+2022.04.04 05:29:45 ERROR Unexpected error initializing server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequest failed with message: Canceled
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2022.04.04 05:29:58 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at c:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\.metals\lsp.trace.json or C:\Users\hkl19\AppData\Local\scalameta\metals\cache\lsp.trace.json
+2022.04.04 05:29:58 INFO  logging to file C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\.metals\metals.log
+2022.04.04 05:29:58 INFO  Started: Metals version 0.11.2 in workspace 'C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2' for client Visual Studio Code 1.66.0.
+2022.04.04 05:29:58 INFO  Parse release: 18
+2022.04.04 05:29:59 INFO  time: initialize in 1s
+2022.04.04 05:29:59 WARN  Build server is not auto-connectable.
+2022.04.04 05:30:00 INFO  skipping build import with status 'Requested'
+2022.04.04 05:30:00 WARN  no build target for: C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\src\main\scala\funsets\FunSets.scala
+2022.04.04 05:30:00 WARN  no build target for: C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\src\main\scala\funsets\Main.scala
+4月 04, 2022 5:30:00 上午 org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+警告: Unmatched cancel notification for request id 1
+2022.04.04 05:30:01 INFO  no build target found for C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\src\main\scala\funsets\Main.scala. Using presentation compiler with project's scala-library version: 3.1.1
+2022.04.04 05:30:02 INFO  time: code lens generation in 1.9s
+2022.04.04 05:30:02 INFO  time: code lens generation in 1.7s
+2022.04.04 05:30:17 WARN  no build target for: C:\Users\hkl19\Desktop\hello-world\src\main\scala\FunSets.scala
+2022.04.04 05:30:25 INFO  shutting down Metals
