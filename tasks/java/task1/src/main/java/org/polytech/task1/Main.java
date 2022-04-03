@@ -1,18 +1,18 @@
-package org.example;
+package org.polytech.task1;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import one.util.streamex.StreamEx;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import one.util.streamex.*;
 
 class WCCmdArgs {
     @Parameter(names = "--help", help = true)
