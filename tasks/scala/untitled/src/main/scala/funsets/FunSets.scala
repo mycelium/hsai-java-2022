@@ -1,0 +1,5 @@
+package funsets
+
+class FunSets {
+
+}
