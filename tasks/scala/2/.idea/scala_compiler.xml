@@ -6,9 +6,6 @@
       <option name="deprecationWarnings" value="true" />
       <option name="uncheckedWarnings" value="true" />
       <option name="optimiseBytecode" value="true" />
-      <parameters>
-        <parameter value="-Yinline-warnings" />
-      </parameters>
     </profile>
   </component>
 </project>
