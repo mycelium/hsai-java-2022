@@ -5,8 +5,7 @@ scalaVersion := "2.12.7"
 scalacOptions ++= Seq(
   "-deprecation",
   "-unchecked",
-  "-optimise",
-  "-Yinline-warnings"
+  "-optimise"
 )
 
 fork := true
