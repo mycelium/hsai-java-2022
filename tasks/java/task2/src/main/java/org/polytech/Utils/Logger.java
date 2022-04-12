@@ -33,25 +33,10 @@ public class Logger {
         Logger.logPath = logFolder + File.separator + logPath;
     }
 
-    // Check if file exists, or create it
-    private static void checkFile() {
-        try {
-            java.io.File file = new java.io.File(logPath);
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public static void log(String message) {
         var date = new Date();
         var sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time = sdf.format(date);
-
-        //checkFile();
 
         try {
             var writer = new PrintWriter(new FileOutputStream(logPath, true));
