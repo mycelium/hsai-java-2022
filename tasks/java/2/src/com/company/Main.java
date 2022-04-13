@@ -12,16 +12,6 @@ import static java.lang.Long.*;
 
 public class Main {
 
-    public static int getPoisson(double a) {
-        Random rnd = new Random();
-        double limit = Math.exp(-a);
-        double prod = rnd.nextDouble();
-        int n;
-        for (n = 0; prod >= limit; n++)
-            prod *= rnd.nextDouble();
-        return n;
-    }
-
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Distribution (choose num):\n1 - Uniform distribution\n2 - Normal distribution\n3 - Poisson distribution\nOther - exit");
@@ -73,23 +63,29 @@ public class Main {
         FileWriter csvWriter = new FileWriter(output+"/result.csv");
         csvWriter.append("rnd_data\n");
         double buff;
+        Random rnd = new Random();
         switch (type) {
             case (1):
                 for (long i = 0; i < count; i++) {
-                    buff = params[0] + Math.random() * (params[1]-params[0]);
+                    buff = params[0] + rnd.nextDouble(params[1]-params[0]+1);
                     csvWriter.append(buff+"\n");
                 }
                 break;
             case (2):
                 for (long i = 0; i < count; i++) {
-                    Random rnd = new Random();
                     buff = (rnd.nextGaussian())*params[1]+params[0];
                     csvWriter.append(buff+"\n");
                 }
                 break;
             case (3):
+                double limit = Math.exp(-params[0]);
+                double prod;
+                int n;
                 for (long i = 0; i < count; i++) {
-                    buff = getPoisson(params[0]);
+                    prod = rnd.nextDouble();
+                    for (n = 0; prod >= limit; n++)
+                        prod *= rnd.nextDouble();
+                    buff = n;
                     csvWriter.append(buff+"\n");
                 }
                 break;
