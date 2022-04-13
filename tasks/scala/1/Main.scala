@@ -14,7 +14,7 @@ object Main {
     // print(balance("()()(()())".toList))
 
     /* Подзадача 3 */
-    // print(countChange(19, List(1,2,5)))
+    print(countChange(19, List(1,2,5)))
   }
 
   /**
@@ -60,13 +60,10 @@ object Main {
       1
     }
     else {
-      var count = 0
-      for (c <- coins) {
-        if (money >= c) {
-          count += countChange(money - c, coins.filter(_ <= c))
-        }
-      }
-      count
+      val counts = 
+        for (c <- coins) 
+          yield if (money < c) 0 else countChange(money - c, coins.filter(_ <= c))
+      counts.sum
     }
   }
 }

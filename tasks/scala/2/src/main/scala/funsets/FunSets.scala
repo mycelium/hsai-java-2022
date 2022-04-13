@@ -68,14 +68,7 @@ object FunSets {
    * Returns whether there exists a bounded integer within `s`
    * that satisfies `p`.
    */
-    def exists(s: Set, p: Int => Boolean): Boolean = {
-      def iter(a: Int): Boolean = {
-        if (a == bound+1) false
-        else if (s(a) && p(a)) true
-        else iter(a+1)
-      }
-      iter(-bound)
-    }
+  def exists(s: Set, p: Int => Boolean): Boolean = !forall(s, value => !p(value))
 
   /**
    * Returns a set transformed by applying `f` to each element of `s`.
