@@ -68,19 +68,12 @@ object FunSets {
    * Returns whether there exists a bounded integer within `s`
    * that satisfies `p`.
    */
-    def exists(s: Set, p: Int => Boolean): Boolean = !forall(s, a => !p(a))
+    def exists(s: Set, p: Int => Boolean): Boolean = !forall(s, i => !p(i))
   
   /**
    * Returns a set transformed by applying `f` to each element of `s`.
    */
-    def map(s: Set, f: Int => Int): Set = {
-      var result: Set = null;
-      forall(s, a => {
-        result = if (result == null) singletonSet(f(a)) else union(singletonSet(f(a)), result)
-        true
-      })
-      result
-    }
+    def map(s: Set, f: Int => Int): Set =  (n: Int) => exists(s, o => f(o) == n)
   
   /**
    * Displays the contents of a set
