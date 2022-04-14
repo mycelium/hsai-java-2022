@@ -1,38 +1,39 @@
 package ReadFile;
 
-import java.io.*;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ReadFileImpl implements ReadFile {
 
-    private File fileIn;
-    private File fileOut;
+    private String fileIn;
+    private String fileOut;
     private StringBuilder data;
     private List<String> symbols;
 
 
-    public ReadFileImpl(File fileIn, File fileOut, String symbols) {
+    public ReadFileImpl(String fileIn, String fileOut, String symbols) {
         this.fileIn = fileIn;
         this.fileOut = fileOut;
         this.data = new StringBuilder();
-        this.symbols = Arrays.stream(symbols.split(" ")).filter((s) -> (s.length() > 0)).collect(Collectors.toList());
+        this.symbols = Arrays.stream(symbols.split(",")).filter((s) -> (s.length() > 0)).collect(Collectors.toList());
     }
 
     @Override
-    public void readFile() throws IOException {
-        InputStreamReader in = new InputStreamReader(new FileInputStream(fileIn), "UTF-8");
-        BufferedReader stream = new BufferedReader(in);
-        String c;
-        while (stream.ready()) {
-            data.append(stream.readLine().replaceAll("[\\p{Punct}\\s&&[^\\h]]", "")
-                    .replace("—", ""));
-            data.append(" ");
+    public void readFile() {
+        try {
+            data.append(Files.readString(Paths.get(this.fileIn))
+                    .replaceAll("[\\p{Punct}]", "")
+                    .replace("—", "")
+                    .replace("\r\n", " "));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
-
-        stream.close();
     }
 
     @Override
@@ -40,36 +41,33 @@ public class ReadFileImpl implements ReadFile {
 
         StringBuilder sbOut = new StringBuilder();
         long spaces = data.chars().filter((c) -> c == (int) ' ').count();
-        sbOut.append("Количество пробелов: ");
-        sbOut.append(spaces - 1);
+        sbOut.append(String.format("Количество пробелов: %d", spaces));
         List<String> words = Arrays.stream(data.toString().split(" "))
                 .filter((s) -> s.matches("[a-zA-ZА-Яа-я]+"))
                 .sorted(Comparator.comparingInt(String::length))
                 .collect(Collectors.toList());
-        sbOut.append("\nКоличество слов: ");
-        sbOut.append(words.size());
-        for (int i = 1; i <= words.get(words.size() - 1).length(); i++) {
-            sbOut.append("\nКоличество слов из " + i + " букв: ");
-            int finalI = i;
-            sbOut.append(words.stream().filter((s) -> (s.length() == finalI)).count());
-        }
-        for (var el : symbols) {
-            sbOut.append("\nКоличество символов " + el + " : ");
-            sbOut.append(data.chars().filter((c) -> Character.toString(c).equals(el)).count());
-        }
+        sbOut.append(String.format("\nКоличество слов: %d", words.size()));
+        Map<Integer, List<String>> sizeWords = new TreeMap<>(words.stream()
+                .collect(Collectors.groupingBy(String::length)));
+        sizeWords.forEach((k, v) -> sbOut
+                .append(String.format("\nКоличество из %d букв: %d", k, v.size())));
+        symbols.forEach((s) -> sbOut
+                .append(String.format("\nКоличество символов %s : %d",
+                        s, StringUtils.countMatches(data.toString(), s))));
         return sbOut;
 
     }
 
     @Override
-    public void writeFile(StringBuilder sbOut) throws IOException {
+    public void writeFile(StringBuilder sbOut) {
         if (this.fileOut == null) {
             System.out.println(sbOut.toString());
         } else {
-            FileOutputStream out = new FileOutputStream(fileOut);
-            Writer stream = new OutputStreamWriter(out);
-            stream.write(sbOut.toString());
-            stream.close();
+            try {
+                Files.writeString(Path.of(this.fileOut), sbOut);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }
 }

@@ -1,30 +1,18 @@
 import ReadFile.ReadFileImpl;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
-
 public class Run {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        if (args.length < 2 || args.length > 3) {
+            System.out.println("Требуются файл ввода и символы для подсчета");
+        }
         ReadFileImpl readFile;
-        System.out.println("Введите файл ввода: ");
-        String in = scanner.nextLine();
-        System.out.println("Введите файл вывода или - : ");
-        String out = scanner.nextLine();
-        System.out.println("Введите через пробел символы для их подсчета: ");
-        String symbols = scanner.nextLine();
-        if (out.equals("-")) {
-            readFile = new ReadFileImpl(new File(in), null, symbols);
+        if (args.length == 2) {
+            readFile = new ReadFileImpl(args[0], null, args[1]);
         } else {
-            readFile = new ReadFileImpl(new File(in), new File(out), symbols);
+            readFile = new ReadFileImpl(args[0], args[1], args[2]);
         }
-        try {
-            readFile.readFile();
-            readFile.writeFile(readFile.dataManipulation());
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        readFile.readFile();
+        readFile.writeFile(readFile.dataManipulation());
 
     }
 }

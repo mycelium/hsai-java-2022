@@ -10,7 +10,7 @@ object Main {
       println()
     }
     
-    println(balance("((a))))".toList))
+    println(balance("()()".toList))
     val coins = List(1,5,10);
     print(countChange(17,coins));
   }
@@ -34,28 +34,21 @@ object Main {
    * Exercise 2 Parentheses Balancing
     */
   def balance(chars: List[Char]): Boolean = {
-    val opening = List( '(', '{', '[' );
-    val closing = List( ')', '}', ']' );
-          
-    if(chars.length==0){
-      return true;
-    }
-    if(chars.length==1 && (opening.indexOf(chars.head) > -1 ||closing.indexOf(chars.head) > -1)){
-      return false;
-    }
-    val k = opening.indexOf(chars.head);
-    if(k > -1){
-      if(chars(chars.length-1)==closing(k)){
-          val tmpList = chars.drop(1);
-          return balance(tmpList.dropRight(1));
-      }  
+    def balanceByHead(chars: List[Char], check: Int): Boolean = {
+      if(chars.length == 0){
+        return check == 0 
+      }
+      if(chars.head == '('){
+        return balanceByHead(chars.tail, check+1)
+      }
+      else if(chars.head == ')'){
+        return balanceByHead(chars.tail, check-1)
+      }
       else{
-          return balance(chars.dropRight(1));
+        return balanceByHead(chars.tail, check)
       }
     }
-    else{
-      return balance(chars.drop(1));
-    }
+    return balanceByHead(chars, 0)
   }
  
 
