@@ -56,6 +56,14 @@ public class CLI {
         });
     }
 
+    public static void showParams() {
+        final Distribution dist = (Distribution) Main.params.get("type");
+        final Float[] pars = (Float[]) Main.params.get("params");
+        System.out.printf("Up to build %s distribution with\n%s=%f\n",
+                dist.toString(), dist.getParameterNames()[0], pars[0]);
+        if (dist.getParameterNumber() == 2) { System.out.printf("%s=%f\n", dist.getParameterNames()[1], pars[1]); }
+    }
+
     public static void showResponse(File result) {
         System.out.println("Resulting file: " + result.getAbsolutePath());
     }

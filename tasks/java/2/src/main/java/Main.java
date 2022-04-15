@@ -13,6 +13,7 @@ public class Main {
     * Arguments could be invoked in any order */
     public static void main(String[] args) {
         CLI.readArgs(args);
+        CLI.showParams();
         CLI.showResponse(DataGenerator.getPopulatedFile());
     }
 }
