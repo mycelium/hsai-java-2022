@@ -40,7 +40,7 @@ public class DataGenerator {
         return file;
     }
 
-    private static String getData() throws InterruptedException {
+    private static String getData() {
         Random rnd = new Random();
         final StringBuilder data = new StringBuilder();
         final Distribution dist = (Distribution) Main.params.get("type");
