@@ -2,18 +2,18 @@ import common._
 
 object Main {
   def main(args: Array[String]) {
-    println("Task 1")
-    for (row <- 0 to 10) {
-      for (col <- 0 to row)
-        print(pascal(col, row) + " ")
-      println()
-    }
+//    println("Task 1")
+//    for (row <- 0 to 10) {
+//      for (col <- 0 to row)
+//        print(pascal(col, row) + " ")
+//      println()
+//    }
 
 //    println("Task 2")
 //    print(balance("((ds)())())".toList))
 
-//    println("Task 3")
-//    print(countChange(5, List(2,3)))
+    println("Task 3")
+    print(countChange(5, List(2,3)))
   }
 
   /**
@@ -47,13 +47,8 @@ object Main {
    * 2 and 3: 2+3.
    */
   def countChange(money: Int, coins: List[Int]): Int = {
-    if (money == 0) { return 1 }
-    var count = 0
-    for (c <- coins) {
-      if (money >= c) {
-        count += countChange(money - c, coins.filter(_ <= c))
-      }
-    }
-    count
+    if (money < 0 || coins.isEmpty) 0
+    else if (money == 0) 1
+    else countChange(money, coins.tail) + countChange(money - coins.head, coins)
   }
 }
