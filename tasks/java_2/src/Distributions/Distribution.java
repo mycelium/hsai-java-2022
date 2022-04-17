@@ -6,7 +6,7 @@ public abstract class Distribution {
 
     static Random random = new Random();
 
-    public Double getRnd(){
+    public Double getRnd() {
         return null;
     }
 }

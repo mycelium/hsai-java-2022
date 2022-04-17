@@ -10,7 +10,7 @@ public class UniformDistribution extends Distribution {
         this.rightBoundary = rBound;
     }
 
-    public Double getRnd(){
+    public Double getRnd() {
         return leftBoundary + random.nextDouble() * (rightBoundary - leftBoundary);
     }
 }

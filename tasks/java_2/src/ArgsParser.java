@@ -14,12 +14,12 @@ public class ArgsParser {
                         case "u" -> Main.type = 'u';
                         case "n" -> Main.type = 'n';
                         case "p" -> Main.type = 'p';
-                        default -> System.out.println("Wrong dist");
+                        default -> System.out.println("Wrong dist, changed to default (u)");
                     }
                     break;
                 case "params":
                     try {
-                        var pars = Arrays.stream(paramValue.split(",")).map(Float::parseFloat).toArray(Float[]::new);
+                        var pars = Arrays.stream(paramValue.split(",")).map(Double::parseDouble).toArray(Double[]::new);
                         Main.params = pars;
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
@@ -28,13 +28,13 @@ public class ArgsParser {
                 case "cnt":
                     int val = Integer.parseInt(paramValue);
                     if (val > 10000) Main.cnt = val;
-                    else System.out.println("Wrong cnt");
+                    else System.out.println("Wrong cnt, changed to default (10000)");
                     break;
                 case "out":
                     String path = paramValue.replaceAll("\\\\", "/");
                     File file = new File(path);
                     if (file.exists()) Main.out = path;
-                    else System.out.println("Wrong out");
+                    else System.out.println("Wrong out, saved in user dir");
                     break;
             }
         }
