@@ -57,12 +57,12 @@ object FunSets {
    */
   def forall(s: Set, p: Int => Boolean): Boolean = {
     def iter(a: Int): Boolean = {
-      if (???) ???
-      else if (???) ???
-      else iter(???)
+      if (a > bound) true
+      else if (s(a) && !p(a)) false
+      else iter(a + 1)
     }
 
-    iter(???)
+    iter(-bound)
   }
 
   /**
@@ -74,7 +74,7 @@ object FunSets {
   /**
    * Returns a set transformed by applying `f` to each element of `s`.
    */
-  def map(s: Set, f: Int => Int): Set = (newElem: Int) => exists(s, x => f(x) == newElem)
+  def map(s: Set, f: Int => Int): Set = (newElem: Int) => exists(s, oldElem => f(oldElem) == newElem)
 
   /**
    * Displays the contents of a set
