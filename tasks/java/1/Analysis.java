@@ -16,17 +16,8 @@ public class Analysis {
     }
 
     // Count spaces in text
-    public static int countSpaces(String text) {
-        int spaceCount = 0;
-        int i = 0;
-        while (i < text.length()){
-            char ch = text.charAt(i);
-            if (ch == ' '){
-                spaceCount++;
-            }
-            i++;
-        }
-        return spaceCount;
+    public static long countSpaces(String text) {
+        return text.chars().filter(c -> c == (int)' ').count();
     }
 
     // Create dictionary with word lengths as keys and number of words as values
