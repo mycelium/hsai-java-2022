@@ -1,1 +1,9 @@
 java 2 done
+
+Program that generates data 
+Distributions: normal, poisson, uniform
+Parameters: average,dev for normal; lambda for poisson; a,b for uniform.
+Amount of output data: min 10000, max 100000
+Output: CSV
+Test: for checking generated values from each distribution
+Also includes logging of application.
