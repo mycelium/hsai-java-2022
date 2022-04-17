@@ -1,0 +1,12 @@
+Words count: 85
+Spaces count: 84
+Words with length 1 - 4
+Words with length 2 - 11
+Words with length 3 - 21
+Words with length 4 - 13
+Words with length 5 - 13
+Words with length 6 - 10
+Words with length 7 - 6
+Words with length 8 - 3
+Words with length 9 - 2
+Words with length 10 - 2
