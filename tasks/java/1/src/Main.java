@@ -27,7 +27,6 @@ public class Main {
         if (args.length < 1) {
             System.out.println("This program must have at least one parameter!");
             System.exit(0);
-
         }
 
         Path in = Path.of(args[0]);
