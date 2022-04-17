@@ -4,11 +4,15 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import distributions.*;
 import output.CSVOutput;
+import java.util.logging.Logger;
 
 public class CmdLaunch {
+    private static Logger logger = Logger.getLogger("Logging");
+
     public static void main(String args[]) throws Exception {
+
         if (args.length == 0) {
-            System.out.println("No arguments found");
+            logger.info("No arguments found");
             System.exit(-1);
         }
 
@@ -42,12 +46,13 @@ public class CmdLaunch {
                 num_list = p.genNumbers(numberOfValues);
                 break;
             default:
-                System.out.println("Typo in distribution type");
+                logger.info("Typo in distribution type");
                 break;
         }
 
         CSVOutput csv = new CSVOutput();
         String csvPath = dir + "result.csv";
+        logger.info("csv file created " + csvPath);
         csv.writeToCsv(csvPath, num_list);
         System.out.println("Check result in " + csvPath);
     }
