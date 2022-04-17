@@ -1,0 +1,21 @@
+cat
+cats
+oak
+many cats
+categories
+cut ropes
+cute
+Barbecutie
+caps
+capital
+caption
+catch us if you can
+
+asdADGADS213
+
+123-456-789
+
+examples:
+grek -n [a-zA-Z]{10} exercises\kotlin\src\test.txt
+grek -nr ^[a-zA-Z]*[0-9]+$ exercises\kotlin\src
+grek -nr -B 2 -A 2 cut|cat exercises\kotlin\src
