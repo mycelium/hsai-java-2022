@@ -1,30 +1,41 @@
-import java.util.Map;
-import java.util.Scanner;
-import java.io.File;
-import java.util.List;
+import java.util.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Main {
     public static void main(String args[]) throws Exception {
-        Scanner reader = new Scanner(System.in);
-        System.out.print("Enter input file name: ");
-        String input_file = reader.nextLine();
 
-        File file = new File(input_file);
-        try (Scanner sc = new Scanner(file)) {
-            sc.useDelimiter("\\Z");
-            String text = sc.next();
-            List<String> words = Analysis.splitText(text);
-            Map<Integer, Integer> map = Analysis.wordSizeMap(words);
-
-            System.out.println("\nNumber of words: " + words.size());
-            System.out.println("Number of spaces: " + Analysis.countSpaces(text) + "\n");
-            System.out.print("Word's lengths: ");
-            map.forEach((key, value) -> System.out.println(value + " words of length " + key));
+        if (args.length == 0) {
+            System.out.println("No argument found");
+            System.exit(0);
         }
 
-        System.out.print("\nEnter list of symbols: ");
-        String symbol_list = reader.nextLine();
-        reader.close();
-        System.out.print("Total number of symbols: " + Analysis.symbolsMap(symbol_list));
+        System.out.print("Input filename: " + args[0]);
+        Path input_file = Paths.get(args[0]);
+
+        if (!Files.exists(input_file)) {
+            System.out.println("No file found");
+            System.exit(0);
+        }
+
+        int unnecessarySpaces = Files.readAllLines(input_file).size() - 1;
+        String file = String.valueOf(Files.readAllLines(input_file));
+        String text = file.substring(1, file.length() - 1);
+
+        // Count words
+        String[] words = Analysis.splitText(text);
+        int words_total = words.length;
+
+        // Count spaces
+        int spaces = Analysis.countSpaces(text) - unnecessarySpaces;
+
+        // Count word's lengths and count them
+        Map<Integer, Long> map = Analysis.wordSizeMap(words);
+
+        System.out.println("\nNumber of words: " + words_total);
+        System.out.println("Number of spaces: " + spaces + "\n");
+        System.out.print("Word's lengths: ");
+        map.forEach((key, value) -> System.out.println(value + " words of length " + key));
     }
 }
