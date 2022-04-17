@@ -10,6 +10,8 @@ import java.util.logging.Logger;
  * Parameters: average,dev for normal; lambda for poisson; a,b for uniform
  * Amount of output data: min 10000, max 100000
  * Output: CSV
+ * Test: for checking generated values from each distribution
+ * Also includes logging of application.
  * */
 public class Main {
 
@@ -53,8 +55,8 @@ public class Main {
         Scanner in = new Scanner(System.in);
         do {
             size = in.nextInt();
-            if (size < 1 || size > 100000) System.out.println("Again! more than 10 000 and less than 100 000:\n");
-        } while (size < 1|| size > 100000);
+            if (size < 10000 || size > 100000) System.out.println("Again! more than 10 000 and less than 100 000:\n");
+        } while (size < 10000|| size > 100000);
         System.out.println("Please, input parameters " + a + " value: ");
         par1 = in.nextInt();
         if (!Objects.equals(b, " ")) {
