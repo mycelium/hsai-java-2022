@@ -12,10 +12,12 @@ public class TextAnalysis {
 
         StringBuilder output = new StringBuilder();
         output.append(String.format(
-                "Number of words: %d\n" + "Number of spaces: %d\n" + "Word length with occurrence (length - occurrence): \n",
+                "Number of words: %d" + System.lineSeparator() + "Number of spaces: %d" +
+                        System.lineSeparator() + "Word length with occurrence (length - occurrence): " +
+                        System.lineSeparator(),
                 words.length, spaces));
 
-        wordSizeOccurrence.forEach((key, value) -> output.append(String.format("%d - %d\n", key, value)));
+        wordSizeOccurrence.forEach((key, value) -> output.append(String.format("%d - %d" + System.lineSeparator(), key, value)));
 
         return output;
     }
