@@ -28,13 +28,13 @@ public class Main {
         int words_total = words.length;
 
         // Count spaces
-        int spaces = Analysis.countSpaces(text) - unnecessarySpaces;
+        long spaces_total = Analysis.countSpaces(text) - unnecessarySpaces;
 
-        // Count word's lengths and count them
+        // Count words' lengths and amount of them
         Map<Integer, Long> map = Analysis.wordSizeMap(words);
 
         System.out.println("\nNumber of words: " + words_total);
-        System.out.println("Number of spaces: " + spaces + "\n");
+        System.out.println("Number of spaces: " + spaces_total + "\n");
         System.out.print("Word's lengths: ");
         map.forEach((key, value) -> System.out.println(value + " words of length " + key));
     }
