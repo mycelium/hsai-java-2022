@@ -1,5 +1,6 @@
 data class Arguments(
-    var rgx: Regex = Regex(""),
+    var path: String = "",
+    var pattern: String = "",
     var fileCheck: Boolean = false,
     var directoryCheck: Boolean = false,
     var registerIgnore: Boolean = false,

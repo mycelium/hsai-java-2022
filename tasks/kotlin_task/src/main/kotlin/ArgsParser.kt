@@ -13,12 +13,12 @@ fun parseArgs(args: Array<String>, settings: Arguments) {
             settings.excludeList.addAll(files)
             break
         }
-        if (arg.contains("-n")) {
-            settings.fileCheck = true
-            continue
-        }
         if (arg.contains("-nr")) {
             settings.directoryCheck = true
+            continue
+        }
+        if (arg.contains("-n")) {
+            settings.fileCheck = true
             continue
         }
         if (arg.contains("-B")) {
@@ -30,6 +30,8 @@ fun parseArgs(args: Array<String>, settings: Arguments) {
             continue
         }
     }
+    settings.pattern = args[args.size - 2]
+    settings.path = args[args.size - 1]
 }
 
 private fun showHelp() {
