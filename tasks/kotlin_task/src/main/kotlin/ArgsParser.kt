@@ -37,7 +37,7 @@ fun parseArgs(args: Array<String>, settings: Arguments) {
 }
 
 private fun showHelp() {
-    println("Example : -nr -i -A2 -B3 wew \\testData")
+    println("Example : -nr -i -A2 -B3 --exclude=data1|data2 wew \\testData")
     println("Keys: -n - single file\n-nr - directory\n-An - rows after (n - number of rows)\n-Bn - before rows (n - number of rows)")
     println("-i - ignore case\n--exclude - files to exclude in directory search\n--help - get help")
     println("Last two elements must be regex pattern and path")
