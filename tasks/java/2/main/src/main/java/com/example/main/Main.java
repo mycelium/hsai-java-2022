@@ -11,19 +11,18 @@ import com.example.io.SqliteWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-//        OutputWriter ow = new SqliteWriter("resources/database");
-        OutputWriter ow = new CsvWriter("resources/rand.csv");
-        Distribution dis = new NormalDistribution(5, 3);
-//        Distribution dis = new UniformDistribution(0,10);
-
-        List<Double> series = new LinkedList<>();
-        for (int i = 0; i < 100000; i++) {
-            series.add(dis.getPoint());
+    public static void main(String[] args) {
+        try {
+            System.out.println("Success. Path to file: " + Generator.run());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Unsuccessful: " + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("Unsuccessful");
+            e.printStackTrace();
         }
 
-        ow.write(series);
     }
 }

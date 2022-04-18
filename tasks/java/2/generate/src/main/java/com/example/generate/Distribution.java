@@ -18,4 +18,6 @@ public abstract class Distribution {
     }
 
     public abstract double getPoint();
+
+    public abstract Distribution getWithArguments(double[] args);
 }

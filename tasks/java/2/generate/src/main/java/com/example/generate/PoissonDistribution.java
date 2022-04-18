@@ -17,4 +17,12 @@ public class PoissonDistribution extends Distribution {
         } while (p > L);
         return k - 1;
     }
+
+    public PoissonDistribution getWithArguments(double[] args) {
+        if (args.length != 1) {
+            throw new IllegalArgumentException();
+        }
+
+        return new PoissonDistribution(args[0]);
+    }
 }

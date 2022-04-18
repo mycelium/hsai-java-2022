@@ -1,19 +1,19 @@
 package com.example.io;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.List;
 
 public class SqliteWriter implements OutputWriter {
-    Connection sqliteConnection = null;
+    private final Connection sqliteConnection;
+    private Path outPath;
 
-    public SqliteWriter(String directoryPath) {
-        try {
-            String url = "jdbc:sqlite:" + directoryPath + "/test.db";
-            sqliteConnection = DriverManager.getConnection(url);
-            sqliteConnection.setAutoCommit(false);
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
+    public SqliteWriter(String directoryPath) throws Exception {
+        outPath = Paths.get(directoryPath).toAbsolutePath();
+        String url = "jdbc:sqlite:" + directoryPath + "/test.db";
+        sqliteConnection = DriverManager.getConnection(url);
+        sqliteConnection.setAutoCommit(false);
     }
 
     public void write(List<Double> series) {
@@ -40,8 +40,6 @@ public class SqliteWriter implements OutputWriter {
         }
     }
 
-
-
     public void query(String query) {
         try {
             Statement pst = sqliteConnection.createStatement();
@@ -50,5 +48,9 @@ public class SqliteWriter implements OutputWriter {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    public Path getOutputFilePath() {
+        return outPath;
     }
 }
