@@ -81,18 +81,13 @@ object FunSets {
    * Returns a set transformed by applying `f` to each element of `s`.
    */
     def map(s: Set, f: Int => Int): Set = {
-    var res = (x:Int) => false
-    def iter(a: Int){
-      if(a>1000) return
-      else{if(s(a)){
-        var rest = res
-        res = (x:Int) => rest(x)||x==f(a)
-      }
-      iter(a+1)
+    def helper(a: Int, ff: Int=>Boolean): Int=>Boolean = {
+      if(a>1000) ff
+      else{if(s(a)) helper(a+1, (x:Int)=>ff(x)||x==f(a))
+      else helper(a+1, ff)
       }
     }
-    iter(-bound)
-    return res
+    helper(-1000, (x:Int) => false)
   }
   
   /**

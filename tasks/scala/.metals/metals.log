@@ -1,0 +1,12 @@
+2022.04.18 21:54:47 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at c:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\.metals\lsp.trace.json or C:\Users\hkl19\AppData\Local\scalameta\metals\cache\lsp.trace.json
+2022.04.18 21:54:48 INFO  logging to file C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\.metals\metals.log
+2022.04.18 21:54:48 INFO  Started: Metals version 0.11.2 in workspace 'C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala' for client Visual Studio Code 1.66.2.
+2022.04.18 21:54:48 INFO  Parse release: 18
+2022.04.18 21:54:49 INFO  time: initialize in 1.07s
+2022.04.18 21:54:49 WARN  Build server is not auto-connectable.
+2022.04.18 21:54:49 WARN  no build tool detected in workspace 'C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2022.04.18 21:54:50 WARN  no build target for: C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\1\Main.scala
+2022.04.18 21:54:51 INFO  no build target found for C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\1\Main.scala. Using presentation compiler with project's scala-library version: 3.1.1
+2022.04.18 21:54:52 INFO  time: code lens generation in 2.73s
+2022.04.18 21:55:28 WARN  no build target for: C:\Users\hkl19\Desktop\hsai-java-2022\tasks\scala\2\project\plugins.sbt
+2022.04.18 21:55:31 INFO  shutting down Metals

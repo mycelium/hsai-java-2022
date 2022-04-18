@@ -39,18 +39,17 @@ object Main {
    * 2 and 3: 2+3.
    */
   def countChange(money: Int, coins: List[Int]): Int = {
-    var res=0
-    def helper(re:Int, rc:List[Int]){
+    def helper(re:Int, rc:List[Int]): Int = {
+      println(re)
+      println(rc)
       if(re!=0){
-        var aval=if(rc.isEmpty) return else rc.head
-        if(re>=aval) {
-        helper(re-rc.head,rc) 
-        helper(re,rc.tail)
+        if(re>=(if(rc.isEmpty) return 0 else rc.head)){
+        return helper(re-rc.head,rc)+helper(re,rc.tail)
         }
+        else 0
       }
-      else res=res+1
+      else 1
     }
     helper(money, coins)
-    return res
   }
 }
