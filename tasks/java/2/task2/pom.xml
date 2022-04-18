@@ -16,7 +16,7 @@
     <dependencies>
         <dependency>
             <groupId>groupId</groupId>
-            <artifactId>io-module</artifactId>
+            <artifactId>generation-module</artifactId>
             <version>1.0</version>
             <scope>compile</scope>
         </dependency>
