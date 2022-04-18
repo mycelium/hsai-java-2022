@@ -19,6 +19,9 @@ public class Main {
         argsReader(args);
         showInfo();
         System.out.println("\nStarting to build data, and writing it to a file...\n");
+        final String path = getResultFilePath();
+        System.out.println("Build is finished and data saved to: ");
+        System.out.println(path);
     }
 
     private static void argsReader(String[] args) {
@@ -77,5 +80,18 @@ public class Main {
                 break;
         }
         return numbers;
+    }
+    private static String getResultFilePath() {
+        File resultFile = new File(resultPath + "results.csv");
+        try {
+            resultFile.createNewFile();
+            FileWriter writer = new FileWriter(resultFile);
+            writer.append(getRandomNumbers());
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Something went wrong while working with result file!");
+            System.exit(-1);
+        }
+        return resultFile.getAbsolutePath();
     }
 }
