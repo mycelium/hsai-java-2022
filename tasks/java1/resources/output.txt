@@ -1,0 +1,15 @@
+Total words count: 124
+Spaces count: 122
+Words with length 1 - 9
+Words with length 2 - 14
+Words with length 3 - 29
+Words with length 4 - 21
+Words with length 5 - 12
+Words with length 6 - 11
+Words with length 7 - 10
+Words with length 8 - 5
+Words with length 9 - 8
+Words with length 10 - 1
+Words with length 11 - 1
+Words with length 12 - 2
+Words with length 14 - 1
