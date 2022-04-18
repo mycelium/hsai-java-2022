@@ -13,12 +13,13 @@ class Reader {
 
     fun readDirectory(settings: Arguments): MutableMap<String, List<String>> {
         val map = mutableMapOf<String, List<String>>()
-        val resultText: MutableList<String> = mutableListOf()
         try {
             File(settings.path).walk().forEach {
                 if (it.isFile && !settings.excludeList.contains(it.toString())) {
-                    resultText.add(it.readLines().toString())
-                    map.put(it.toString(), resultText)
+                    val resultText: MutableList<String> = mutableListOf()
+                    resultText.addAll(it.readLines())
+                    map[it.toString()] = resultText
+
                 }
             }
         } catch (e: java.lang.Exception) {

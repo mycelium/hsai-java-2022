@@ -26,17 +26,17 @@ class Processor(reader: Reader) {
         for (i in strings.indices) {
             if (rgx.containsMatchIn(strings[i])) {
                 println("Find in file $fileName")
-                val GREEN = "\\u001B[32m"
-                val RESET = "\\u001B[0m"
+                val red = "\u001b[31m"
+                val reset = "\u001b[0m"
                 if (settings.beforeRows != 0) {
                     for (j in Integer.max(0, i - settings.beforeRows) until i) {
-                        println(GREEN + strings[j] + "\n" + RESET)
+                        println(strings[j])
                     }
                 }
-                println(strings[i])
+                println(red + strings[i] + reset)
                 if (settings.afterRows != 0) {
                     for (j in i+1..Integer.min(strings.size - 1, i + settings.afterRows)) {
-                        println(GREEN + strings[j] + "\n" + RESET)
+                        println(strings[j])
                     }
                 }
             }
