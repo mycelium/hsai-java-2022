@@ -1,4 +1,5 @@
 import java.awt.Color
+import kotlin.system.exitProcess
 
 class Processor(reader: Reader) {
 
@@ -8,7 +9,10 @@ class Processor(reader: Reader) {
         if (reader.checkExists(settings.path)) {
             val strings = reader.readFile(settings.path)
             findMatchedStrings(settings, strings, settings.path)
-        } else println("Wrong file path")
+        } else {
+            println("Wrong file path")
+            exitProcess(-1)
+        }
     }
 
     fun directoryProcessor(settings: Arguments, reader: Reader) {
@@ -16,7 +20,10 @@ class Processor(reader: Reader) {
             val filesStrings = reader.readDirectory(settings)
             for (curr in filesStrings)
                 findMatchedStrings(settings, curr.value, curr.key)
-        } else println("Wrong file path")
+        } else {
+            println("Wrong file path")
+            exitProcess(-1)
+        }
     }
 
     private fun findMatchedStrings(settings: Arguments, strings: List<String>, fileName: String) {
@@ -35,7 +42,7 @@ class Processor(reader: Reader) {
                 }
                 println(red + strings[i] + reset)
                 if (settings.afterRows != 0) {
-                    for (j in i+1..Integer.min(strings.size - 1, i + settings.afterRows)) {
+                    for (j in i + 1..Integer.min(strings.size - 1, i + settings.afterRows)) {
                         println(strings[j])
                     }
                 }

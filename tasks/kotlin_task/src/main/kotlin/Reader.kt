@@ -15,7 +15,7 @@ class Reader {
         val map = mutableMapOf<String, List<String>>()
         try {
             File(settings.path).walk().forEach {
-                if (it.isFile && !settings.excludeList.contains(it.toString())) {
+                if (it.isFile && !settings.excludeList.contains(it.toString().substringAfterLast("\\"))) {
                     val resultText: MutableList<String> = mutableListOf()
                     resultText.addAll(it.readLines())
                     map[it.toString()] = resultText

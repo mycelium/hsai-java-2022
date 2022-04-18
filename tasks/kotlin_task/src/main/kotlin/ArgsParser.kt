@@ -1,8 +1,10 @@
+import kotlin.system.exitProcess
+
 fun parseArgs(args: Array<String>, settings: Arguments) {
     for (arg in args) {
         if (arg.contains("--help")) {
             showHelp()
-            break
+            exitProcess(1)
         }
         if (arg.contains("-i")) {
             settings.registerIgnore = true
@@ -11,7 +13,7 @@ fun parseArgs(args: Array<String>, settings: Arguments) {
         if (arg.contains("--exclude")) {
             val files = arg.substring(arg.indexOf('=') + 1).split("|")
             settings.excludeList.addAll(files)
-            break
+            continue
         }
         if (arg.contains("-nr")) {
             settings.directoryCheck = true
@@ -35,5 +37,8 @@ fun parseArgs(args: Array<String>, settings: Arguments) {
 }
 
 private fun showHelp() {
-    TODO("Not yet implemented")
+    println("Example : -nr -i -A2 -B3 wew \\testData")
+    println("Keys: -n - single file\n-nr - directory\n-An - rows after (n - number of rows)\n-Bn - before rows (n - number of rows)")
+    println("-i - ignore case\n--exclude - files to exclude in directory search\n--help - get help")
+    println("Last two elements must be regex pattern and path")
 }
