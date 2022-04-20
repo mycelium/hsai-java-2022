@@ -1,4 +1,3 @@
-import java.awt.Color
 import kotlin.system.exitProcess
 
 class Processor(reader: Reader) {
