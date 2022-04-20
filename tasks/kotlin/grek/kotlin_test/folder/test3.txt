@@ -1,0 +1,4 @@
+The Dinosaur Egg is an artifact and an animal product.
+Initially, a Dinosaur Egg can be found by digging up an Artifact Spot in The Mountains (including the Quarry), in Fishing Treasure Chests after reaching Fishing level 2 and having previously found at least one artifact, dropped from a Pepper Rex, foraged on Prehistoric Floors in the Skull Cavern, or won in the Crane Game in the Movie Theater.
+Dinosaur Eggs can be put into an incubator in a Big or Deluxe Coop to hatch a Dinosaur 12 days later (6 days with the Coopmaster Profession). Mature and fed dinosaurs will produce Dinosaur Eggs every 7 days.
+Tip: Placing the first Dinosaur Egg found into an incubator instead of donating it to the Museum will ensure that the player both obtains a Dinosaur and completes the Museum collection.
