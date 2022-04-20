@@ -13,7 +13,7 @@ public class CSVOutput
         FileWriter fileWriter = new FileWriter(file);
 
         String res = IntStream.range(0, elements.size()).mapToObj(i -> elements.get(i) + "")
-                        .collect(Collectors.joining(",\n"));
+                        .collect(Collectors.joining(","));
 
         fileWriter.write(res);
         fileWriter.close();
