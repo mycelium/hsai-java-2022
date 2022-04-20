@@ -18,12 +18,14 @@ import kotlin.collections.MutableMap
 
 fun find(line_arr: List<String>, A: Int, B: Int, regex: Regex): List<String> {
     var result = listOf<String>()
+    var str_count=0
     for (i in line_arr.indices) {
+        str_count++
         if (line_arr[i].contains(regex)){
             if (B>0)
                 for (j in max(0, i-B) until i)
                     result = result + line_arr[j]
-            result = result + ("*FIND*: "+line_arr[i])
+            result = result + ("*FIND*: str${str_count} : +${line_arr[i]}")
             if (A>0)
                 for (k in i+1..min(line_arr.size-1, i+A))
                     result = result + line_arr[k]
