@@ -3,7 +3,7 @@ import kotlinx.cli.ArgType
 import kotlinx.cli.default
 
 data class ArgumentSet(val args: Array<String>) {
-    val parser = ArgParser("grek")
+    private val parser = ArgParser("grek")
     val lineNum: Boolean by parser.option(ArgType.Boolean, "line-number", "n", "print line number with output lines").default(false)
     val recursive: Boolean by parser.option(ArgType.Boolean, "recursive", "r", "search recursively in folder").default(false)
     val ignoreCase: Boolean by parser.option(ArgType.Boolean, "ignore-case", "i", "ignore case when searching").default(false)
