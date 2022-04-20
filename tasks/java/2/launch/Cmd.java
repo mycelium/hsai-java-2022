@@ -25,7 +25,7 @@ public class Cmd {
                 .map(Double::parseDouble)
                 .collect(Collectors.toList());
 
-        System.out.println("Directory: " + args[3]); // dir/where/to/save/result/
+        System.out.println("Directory: " + args[3]); // dir\where\to\save\result\
         String dir = args[3];
 
         List<Double> num_list = null;
