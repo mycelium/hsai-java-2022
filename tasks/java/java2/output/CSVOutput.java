@@ -1,8 +1,9 @@
 package output;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.BufferedWriter;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class CSVOutput
 {
@@ -10,18 +11,11 @@ public class CSVOutput
     {
         File file = new File(path);
         FileWriter fileWriter = new FileWriter(file);
-        BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
 
-        for(int i = 0; i < elements.size(); i++) {
-            if ( i != elements.size()-1) {
-                bufferWriter.write(elements.get(i) + ",");
-            }
-            else {
-                bufferWriter.write(elements.get(elements.size() - 1) + "");
-            }
-        }
+        String res = IntStream.range(0, elements.size()).mapToObj(i -> elements.get(i) + "")
+                        .collect(Collectors.joining(",\n"));
 
-        bufferWriter.close();
+        fileWriter.write(res);
         fileWriter.close();
     }
 }
