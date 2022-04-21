@@ -1,0 +1,3 @@
+module distribution {
+    exports distribution;
+}
