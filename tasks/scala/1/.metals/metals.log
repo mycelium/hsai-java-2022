@@ -1,0 +1,26 @@
+2022.04.16 19:56:33 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at c:\Users\BK\Downloads\hsai-java-2022-80101_Antokhin-Daniil\hsai-java-2022-80101_Antokhin-Daniil\tasks\scala\1\.metals\lsp.trace.json or C:\Users\BK\AppData\Local\scalameta\metals\cache\lsp.trace.json
+2022.04.16 19:56:35 INFO  logging to file C:\Users\BK\Downloads\hsai-java-2022-80101_Antokhin-Daniil\hsai-java-2022-80101_Antokhin-Daniil\tasks\scala\1\.metals\metals.log
+2022.04.16 19:56:35 INFO  Started: Metals version 0.11.2 in workspace 'C:\Users\BK\Downloads\hsai-java-2022-80101_Antokhin-Daniil\hsai-java-2022-80101_Antokhin-Daniil\tasks\scala\1' for client Visual Studio Code 1.63.2.
+2022.04.16 19:56:35 INFO  Parse release: 1.8.0_261
+2022.04.16 19:56:35 WARN  Can't instantiate JavaInteractiveSemanticdb (version: Some(JdkVersion(1,8)), jdkHome: C:\Program Files (x86)\Java\jre1.8.0_261, javac exists: false)
+2022.04.16 19:56:35 INFO  time: initialize in 0.5s
+2022.04.16 19:56:35 WARN  Build server is not auto-connectable.
+2022.04.16 19:56:35 WARN  no build tool detected in workspace 'C:\Users\BK\Downloads\hsai-java-2022-80101_Antokhin-Daniil\hsai-java-2022-80101_Antokhin-Daniil\tasks\scala\1'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2022.04.16 19:56:36 WARN  no build target for: C:\Users\BK\Downloads\hsai-java-2022-80101_Antokhin-Daniil\hsai-java-2022-80101_Antokhin-Daniil\tasks\scala\1\Main.scala
+2022.04.16 19:56:48 INFO  no build target found for C:\Users\BK\Downloads\hsai-java-2022-80101_Antokhin-Daniil\hsai-java-2022-80101_Antokhin-Daniil\tasks\scala\1\Main.scala. Using presentation compiler with project's scala-library version: 3.1.1
+2022.04.16 19:56:50 INFO  time: code lens generation in 14s
+2022.04.16 19:57:42 WARN  no build target for: C:\Users\BK\Downloads\hsai-java-2022-80101_Antokhin-Daniil\hsai-java-2022-80101_Antokhin-Daniil\tasks\scala\1\Main.scala
+2022.04.16 19:58:05 WARN  no build target for: C:\Users\BK\Downloads\hsai-java-2022-80101_Antokhin-Daniil\hsai-java-2022-80101_Antokhin-Daniil\tasks\scala\1\Main.scala
+2022.04.16 19:58:36 INFO  shutting down Metals
+2022.04.16 20:01:32 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at c:\Users\BK\Downloads\hsai-java-2022-80101_Antokhin-Daniil\hsai-java-2022-80101_Antokhin-Daniil\tasks\scala\1\.metals\lsp.trace.json or C:\Users\BK\AppData\Local\scalameta\metals\cache\lsp.trace.json
+2022.04.16 20:01:33 INFO  logging to file C:\Users\BK\Downloads\hsai-java-2022-80101_Antokhin-Daniil\hsai-java-2022-80101_Antokhin-Daniil\tasks\scala\1\.metals\metals.log
+2022.04.16 20:01:33 INFO  Started: Metals version 0.11.2 in workspace 'C:\Users\BK\Downloads\hsai-java-2022-80101_Antokhin-Daniil\hsai-java-2022-80101_Antokhin-Daniil\tasks\scala\1' for client Visual Studio Code 1.66.2.
+2022.04.16 20:01:33 INFO  Parse release: 1.8.0_261
+2022.04.16 20:01:33 WARN  Can't instantiate JavaInteractiveSemanticdb (version: Some(JdkVersion(1,8)), jdkHome: C:\Program Files (x86)\Java\jre1.8.0_261, javac exists: false)
+2022.04.16 20:01:34 INFO  time: initialize in 0.52s
+2022.04.16 20:01:34 WARN  Build server is not auto-connectable.
+2022.04.16 20:01:34 WARN  no build tool detected in workspace 'C:\Users\BK\Downloads\hsai-java-2022-80101_Antokhin-Daniil\hsai-java-2022-80101_Antokhin-Daniil\tasks\scala\1'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2022.04.16 20:01:35 WARN  no build target for: C:\Users\BK\Downloads\hsai-java-2022-80101_Antokhin-Daniil\hsai-java-2022-80101_Antokhin-Daniil\tasks\scala\1\Main.scala
+2022.04.16 20:01:37 INFO  no build target found for C:\Users\BK\Downloads\hsai-java-2022-80101_Antokhin-Daniil\hsai-java-2022-80101_Antokhin-Daniil\tasks\scala\1\Main.scala. Using presentation compiler with project's scala-library version: 3.1.1
+2022.04.16 20:01:39 INFO  time: code lens generation in 4.33s
+2022.04.16 20:02:15 INFO  shutting down Metals
