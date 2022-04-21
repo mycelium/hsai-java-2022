@@ -36,14 +36,13 @@ object Main {
    * 2 and 3: 2+3.
    */
   def countChange(money: Int, coins: List[Int]): Int = {
-    if (money == 0) return 1
-    if (coins.length == 0 || money < 0) return 0
-    var count = 0
-    for (c <- coins) {
-      if (money >= c) {
-        count += countChange(money - c, coins.filter(_ <= c))
-      }
+
+    def counter(money: Int, coins: List[Int]): Int = {
+      if (money == 0) 1
+      else if ((money < 0) || coins.isEmpty) 0
+      else counter(money, coins.dropRight(1)) + counter(money - coins.last, coins)
     }
-    count
+
+    counter(money, coins)
   }
 }
