@@ -1,0 +1,1 @@
+class GrepOptions(val beforeLine: Int, val afterLine: Int, val needsDivider: Boolean)
