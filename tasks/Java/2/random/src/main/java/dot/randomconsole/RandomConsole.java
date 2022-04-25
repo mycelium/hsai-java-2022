@@ -9,9 +9,9 @@ import picocli.CommandLine;
 import picocli.CommandLine.ArgGroup;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
-
 @Command(name = "RandomGenerator", mixinStandardHelpOptions = true, version = "RandomGenerator 0.0",description = "Get random numbers of different distributions.")
 public class  RandomConsole implements Runnable{
+
     @Option(names = {"-n","--number"}, description = "Number of random numbers to gernerate.",required = false)
     private Integer num=1000;
     @Option(names = {"-p","--path"}, description = "Path to store the results.")
