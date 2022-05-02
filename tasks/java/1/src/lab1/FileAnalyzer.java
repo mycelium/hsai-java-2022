@@ -13,7 +13,7 @@ import java.util.TreeMap;
 public class FileAnalyzer {
 
 	private String readFile; //входной файл
-	private File writeFile; //выходной файл
+	private String writeFile; //выходной файл
 	private int numberOfWords = 0; //количество слов
 	private long numberOfSpaces = 0; //количество пробелов
 	private TreeMap<Integer, Integer> wordsLength = new TreeMap<>(); //ключ - длина слова, значение - количество слов данной длины
@@ -26,7 +26,7 @@ public class FileAnalyzer {
 	
 	public FileAnalyzer(String read, String write) {
 		readFile = read;
-		writeFile = new File(write);
+		writeFile = write;
 	}
 	
 	public void analyze() {
@@ -51,24 +51,23 @@ public class FileAnalyzer {
 	}
 	
 	public void write() {
-		try {
-		OutputStream out;
-		if(writeFile == null) {
-			out = System.out;
-		}
-		else {
-			out = new FileOutputStream(writeFile);
-		}
-		out.write(String.format("Number of words in file:%d\n", numberOfWords).getBytes());
-		out.write(String.format("Number of spaces in file:%d\n", numberOfSpaces).getBytes());
+		StringBuilder out = new StringBuilder();
+		out.append(String.format("Number of words in file:%d\n", numberOfWords));
+		out.append(String.format("Number of spaces in file:%d\n", numberOfSpaces));
 		Set<Integer> setOfKeys = wordsLength.keySet();
 		for(Integer i : setOfKeys) {
-			out.write(String.format("Length:%d, number of words:%d\n", i, wordsLength.get(i)).getBytes());
+			out.append(String.format("Length:%d, number of words:%d\n", i, wordsLength.get(i)));
 		}
-		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
+		if(writeFile == null) {
+			System.out.println(out.toString());
 		}
+		else {
+			try {
+				Files.writeString(Paths.get(writeFile), out);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
+			}
 	}
+}
 }
