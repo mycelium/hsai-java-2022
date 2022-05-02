@@ -6,26 +6,24 @@ import java.util.Scanner;
 public class UserInterface {
 
 	public static void main(String[] args) {
-		String pathForRead, pathForWrite;
-		Scanner in = new Scanner(System.in);
-		System.out.print("Введите путь к входному файлу:");
-		pathForRead = in.next();
-		System.out.print("Введите путь к выходному файлу\n\t(или no, если он не нужен):");
-		pathForWrite = in.next();
-		try {
-			FileAnalyzer fileAnalyzer;
-			if(pathForWrite.equals("no")) {
-				fileAnalyzer = new FileAnalyzer(pathForRead);
-			}
-			else {
-				fileAnalyzer = new FileAnalyzer(pathForRead, pathForWrite);
-			}
-			fileAnalyzer.analyze();
-		} catch (IOException e) {
-			System.out.println("Неверно указан входной файл. Завершение работы");
-		} finally {
-			in.close();
-			System.out.println("Анализ файла завершен");
+		FileAnalyzer analyzer;
+		if(args.length == 0) {
+			System.out.println("No file specified");
+			return;
 		}
+		else if(args.length > 2) {
+			System.out.println("Too many parameters specified");
+			return;
+		}
+		else if (args.length == 1) {
+			analyzer = new FileAnalyzer(args[0]);
+		}
+		else {
+			analyzer = new FileAnalyzer(args[0], args[1]);
+		}
+		
+		analyzer.analyze();
+		analyzer.write();
+		System.out.println("File analysis is completed");
 	}
 }
