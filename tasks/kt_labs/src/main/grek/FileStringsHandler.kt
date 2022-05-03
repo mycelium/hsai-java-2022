@@ -12,7 +12,7 @@ class FileStringsHandler(private val contxt: Context) {
      */
     private fun getLines(file: File): List<String> {
         return file
-                .readLines(Charset.defaultCharset())
+            .readLines(Charset.defaultCharset())
     }
 
     /**
@@ -21,13 +21,13 @@ class FileStringsHandler(private val contxt: Context) {
      */
     private fun findIndexes(listOfLines: List<String>, regex: Regex, A: Int, B: Int): List<Int> {
         val filtred = listOfLines
-                .mapIndexed { index, s -> Pair(index, s) }
-                .filter { s -> regex.containsMatchIn(s.second) }
-                .map { pair -> pair.first + 1 }
+            .mapIndexed { index, s -> Pair(index, s) }
+            .filter { s -> regex.containsMatchIn(s.second) }
+            .map { pair -> pair.first + 1 }
 
         val res = mutableListOf<Int>()
         for (i in filtred) {
-            for (j in i-B..i+A) {
+            for (j in i - B..i + A) {
                 if (j >= 1 && j <= listOfLines.size) {
                     res.add(j)
                 }
@@ -42,7 +42,7 @@ class FileStringsHandler(private val contxt: Context) {
      */
     private fun filter(listOfLines: List<String>, listOfIndexes: List<Int>): List<String> {
         return listOfLines
-                .filterIndexed { index, _ -> listOfIndexes.contains(index + 1) }
+            .filterIndexed { index, _ -> listOfIndexes.contains(index + 1) }
     }
 
     /**
@@ -51,10 +51,11 @@ class FileStringsHandler(private val contxt: Context) {
     private fun concatNumber(listOfLines: List<String>, listOfIndexes: List<Int>): List<String> {
         if (listOfLines.size != listOfIndexes.size) {
             throw IllegalArgumentException(
-                    "Size of (listOfLines=${listOfLines.size}) != (listOfIndexes=${listOfIndexes.size})")
+                "Size of (listOfLines=${listOfLines.size}) != (listOfIndexes=${listOfIndexes.size})"
+            )
         }
         return listOfLines
-                .mapIndexed { index, s -> "${listOfIndexes[index]}:${s}" }
+            .mapIndexed { index, s -> "${listOfIndexes[index]}:${s}" }
     }
 
     /**
@@ -63,15 +64,15 @@ class FileStringsHandler(private val contxt: Context) {
      */
     private fun concatName(listOfLines: List<String>, fileName: String): List<String> {
         return listOfLines
-                .map { str -> "${fileName}:${str}" }
+            .map { str -> "${fileName}:${str}" }
     }
 
     /**
      * Logic of work, if add some flags like -i or -v require add this here
      */
     fun run(): List<String> {
-        val listOfIndexes : List<Int> =
-                findIndexes(this.listOfLinesFromFile, contxt.regex, contxt.A, contxt.B)
+        val listOfIndexes: List<Int> =
+            findIndexes(this.listOfLinesFromFile, contxt.regex, contxt.A, contxt.B)
         var listResult: List<String> = filter(this.listOfLinesFromFile, listOfIndexes)
 
         if (contxt.n) {
