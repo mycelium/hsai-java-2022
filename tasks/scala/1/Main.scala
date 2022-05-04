@@ -1,4 +1,4 @@
-package recfun
+package scala.`1`
 import common._
 
 object Main {
@@ -52,18 +52,14 @@ object Main {
    * there is 1 way to give change for 5 if you have coins with denomiation
    * 2 and 3: 2+3.
    */
-  def countChange(money: Int, coins: List[Int]): Int = {
-    def recursive(money: Int, coinsInner: List[Int]): Int = {
-      if (money <= 0) { if (money == 0) 1 else 0 }
-      else {
-        var counter = 0
-        for (i <- coinsInner.indices) {
-          counter += countChange(money - coinsInner(i), coinsInner.take(i + 1))
-        }
-        counter
-      }
-    }
-
-    recursive(money, coins.sorted)
+  def countChange(money: Int, coins: List[Int]): Int = (money, coins) match {
+    case (0, _) => 1
+    case (_, Nil) => 0
+    case (money, _) if money < 0 => 0
+    case (money, coin :: coins) =>
+      val perms =
+        for (n <- 0 to (money / coin))
+          yield countChange(money - (n * coin), coins)
+      perms.sum
   }
 }
