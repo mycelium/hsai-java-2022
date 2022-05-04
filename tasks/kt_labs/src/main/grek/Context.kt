@@ -1,5 +1,3 @@
-package kt_labs.src.main.grek
-
 import java.io.File
 
 data class Context(val file: File,

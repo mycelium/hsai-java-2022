@@ -1,5 +1,3 @@
-package kt_labs.src.main.grek
-
 import java.io.File
 import java.lang.IllegalArgumentException
 import java.nio.charset.Charset

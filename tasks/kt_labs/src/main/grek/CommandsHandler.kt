@@ -1,5 +1,3 @@
-package kt_labs.src.main.grek
-
 import com.xenomachina.argparser.ArgParser
 import com.xenomachina.argparser.default
 import java.io.File
