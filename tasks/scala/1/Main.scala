@@ -13,6 +13,11 @@ object Main {
     println(goodExpression + " is " + (if (balance(goodExpression.toList)) "balanced" else "unbalanced"))
     println(wrongExpression + " is " + (if (balance(wrongExpression.toList)) "balanced" else "unbalanced"))
 
+    println("Counting Change")
+    val denominations = List(1,2,3,4,5)
+    for (amount <- 0 to 10) {
+      println(countChange(amount,denominations) + " way(s) for " + amount)
+    }
   }
 
   /**
@@ -47,6 +52,14 @@ object Main {
    * 2 and 3: 2+3.
    */
   def countChange(money: Int, coins: List[Int]): Int = {
-    return 1
+    def count(money: Int, coins: List[Int]): Int = {
+      if (coins.isEmpty) 0
+      else
+        if(money > 0) count(money-coins.head, coins) + count(money,coins.tail)
+        else
+          if (money == 0) 1
+          else 0
+    }
+    count(money, coins)
   }
 }
