@@ -6,6 +6,13 @@ object Main {
         print(pascal(col, row) + " ")
       println()
     }
+
+    println("Parentheses Balancing")
+    val goodExpression = "(a+b)-(c*(a-b)^d)"
+    val wrongExpression = "(aa(bb-cc)))))"
+    println(goodExpression + " is " + (if (balance(goodExpression.toList)) "balanced" else "unbalanced"))
+    println(wrongExpression + " is " + (if (balance(wrongExpression.toList)) "balanced" else "unbalanced"))
+
   }
 
   /**
@@ -19,7 +26,17 @@ object Main {
    * Exercise 2 Parentheses Balancing
    */
   def balance(chars: List[Char]): Boolean = {
-    return true
+    def isBalanced(chars: List[Char], opened: Int): Boolean = {
+      if (chars.isEmpty) opened == 0
+      else {
+        chars.head match {
+          case '(' => isBalanced(chars.tail, opened + 1)
+          case ')' => isBalanced(chars.tail, opened - 1)
+          case _ => isBalanced(chars.tail, opened)
+        }
+      }
+    }
+    isBalanced(chars, 0)
   }
 
   /**
