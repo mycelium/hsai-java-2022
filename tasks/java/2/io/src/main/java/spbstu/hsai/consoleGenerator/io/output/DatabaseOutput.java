@@ -1,15 +1,17 @@
 package spbstu.hsai.consoleGenerator.io.output;
 
+import java.nio.file.Path;
 import java.sql.*;
 
 public class DatabaseOutput extends Output {
 
     private Connection connection;
 
-    public DatabaseOutput(String file) throws Exception {
+    public DatabaseOutput(Path outputFile) throws Exception {
 
+        super(outputFile);
         try {
-            this.connection = DriverManager.getConnection("jdbc:sqlite:" + file);
+            this.connection = DriverManager.getConnection("jdbc:sqlite:" + outputFile);
             Statement statement = connection.createStatement();
             statement.execute("CREATE TABLE IF NOT EXISTS result (value double)");
         } catch (SQLException e) {
@@ -30,13 +32,13 @@ public class DatabaseOutput extends Output {
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
 
         try {
             connection.close();
             logger.info("SQL connection closed");
         } catch (SQLException e) {
-            throw new Exception("SQL error: " + e.getMessage());
+            logger.info("SQL error: " + e.getMessage());
         }
     }
 }

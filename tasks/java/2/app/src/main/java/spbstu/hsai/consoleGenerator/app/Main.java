@@ -66,16 +66,16 @@ public class Main {
             case CSV: {
                 Path outputFilePath = Paths.get(outputDir.getPath(), "data.csv");
                 logger.info("Generating random values to " + outputFilePath.toAbsolutePath());
-                try {
-                    return new CsvOutput(new PrintWriter(new FileOutputStream(outputFilePath.toFile())));
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+
+                //return new CsvOutput(new PrintWriter(new FileOutputStream(outputFilePath.toFile())));
+                return new CsvOutput(outputFilePath);
+
             }
             case DATABASE: {
                 Path outputFilePath = Paths.get(outputDir.getPath(), "data.db");
                 logger.info("Generating random values to " + outputFilePath.toAbsolutePath());
-                return new DatabaseOutput(outputFilePath.toString());
+                //return new DatabaseOutput(outputFilePath.toString());
+                return new DatabaseOutput(outputFilePath);
             }
             default: {
                 throw new Exception("Unable to create directory");
@@ -95,6 +95,7 @@ public class Main {
             dataWriter = getWriter(params);
         } catch (Exception e) {
             logger.info(e.getMessage());
+            logger.info("Program ended with an error");
             return;
         }
 
@@ -107,7 +108,12 @@ public class Main {
             logger.info("Generating finished");
         } catch (Exception e) {
             logger.info(e.getMessage());
+            logger.info("Program ended with an error");
             return;
         }
+
+        logger.info("Generating completed successfully");
+        System.out.println("\nFile with results: " + dataWriter.getOutputFile().toString());
+        dataWriter.close();
     }
 }
