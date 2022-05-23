@@ -1,0 +1,9 @@
+Text: Привет, дорогогуша! Надеюсь, что ты хорошо провела лето!11
+Number of words in the text: 8
+Number of spaces in the text: 7
+Number of words with the number of letters 2: 1
+Number of words with the number of letters 3: 1
+Number of words with the number of letters 4: 1
+Number of words with the number of letters 6: 2
+Number of words with the number of letters 7: 2
+Number of words with the number of letters 10: 1
