@@ -3,7 +3,9 @@ package services.impl;
 import services.FileProcessing;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -35,17 +37,34 @@ public class FileProcessingImpl implements FileProcessing {
         return symbols;
     }
 
-    private void printer(Integer wordCounter, Integer spaceCounter, Map<Integer, Integer> lengthToCount) {
-        System.out.printf("Word count: %d%n", wordCounter);
-        System.out.printf("Space count: %d%n", spaceCounter);
+//    private void consolePrint(Integer wordCounter, Integer spaceCounter, Map<Integer, Integer> lengthToCount) {
+//        System.out.printf("Word count: %d%n", wordCounter);
+//        System.out.printf("Space count: %d%n", spaceCounter);
+//        for (Integer key : lengthToCount.keySet())
+//        {
+//            System.out.printf("Word length %d : count %d%n", key, lengthToCount.get(key));
+//        }
+//    }
 
+    private void filePrint(Integer wordCounter, Integer spaceCounter, Map<Integer, Integer> lengthToCount, String outputPathString) throws IOException {
+        PrintWriter out;
+        if (outputPathString == null) {
+            out = new PrintWriter(System.out);
+        } else {
+            out = new PrintWriter(new FileWriter(outputPathString));
+        }
+
+        out.printf("Word count: %d%n", wordCounter);
+        out.printf("Space count: %d%n", spaceCounter);
         for (Integer key : lengthToCount.keySet())
         {
-            System.out.printf("Word length %d : count %d%n", key, lengthToCount.get(key));
+            out.printf("Word length %d : count %d%n", key, lengthToCount.get(key));
         }
+
+        out.close();
     }
 
-    private void superCounter(String[] symbols) {
+    private void superCounter(String[] symbols, String outputPathString) {
         Boolean prevSpace = true;
         Integer wordCounter = 0;
         Integer spaceCounter = 0;
@@ -62,10 +81,9 @@ public class FileProcessingImpl implements FileProcessing {
                 currentWordLength++;
             } else {
                 if (!prevSpace) {
-                    if (lengthToCount.containsKey(currentWordLength)){
+                    if (lengthToCount.containsKey(currentWordLength)) {
                         lengthToCount.put(currentWordLength, lengthToCount.get(currentWordLength) + 1);
-                    }
-                    else {
+                    } else {
                         lengthToCount.put(currentWordLength, 1);
                     }
                 }
@@ -75,19 +93,27 @@ public class FileProcessingImpl implements FileProcessing {
         }
 
         if (currentWordLength != 0) { //block for case when EOF isn't space
-            if (lengthToCount.containsKey(currentWordLength)){
+            if (lengthToCount.containsKey(currentWordLength)) {
                 lengthToCount.put(currentWordLength, lengthToCount.get(currentWordLength) + 1);
-            }
-            else {
+            } else {
                 lengthToCount.put(currentWordLength, 1);
             }
         }
 
-        printer(wordCounter, spaceCounter, lengthToCount);
+        try {
+            filePrint(wordCounter, spaceCounter, lengthToCount, outputPathString);
+        } catch (IOException exception) {
+            System.out.println("Ouch, IOException because: " + exception.getCause());
+        }
     }
 
     public void countInfo(String inputPathString) {
         String[] bufferedSymbols = readFileInBuffer(inputPathString);
-        superCounter(bufferedSymbols);
+        superCounter(bufferedSymbols, null);
+    }
+
+    public void countInfo(String inputPathString, String outputPathString) {
+        String[] bufferedSymbols = readFileInBuffer(inputPathString);
+        superCounter(bufferedSymbols, outputPathString);
     }
 }
