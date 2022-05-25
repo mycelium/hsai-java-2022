@@ -124,7 +124,7 @@ public class Main {
     }
 
     private static void persistUser(User user) {
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:users.db")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:output/users.db")) {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(10);
             statement.executeUpdate(String.format("insert into users (id, login, name, email) values ('%s', '%s', '%s', '%s')", user.getId(),
@@ -138,7 +138,7 @@ public class Main {
         Gson gson = new Gson();
         String jsonUsers = gson.toJson(users);
         try {
-            Files.writeString(Paths.get("users.json"), jsonUsers, StandardOpenOption.CREATE);
+            Files.writeString(Paths.get("output","users.json"), jsonUsers, StandardOpenOption.CREATE);
         } catch (IOException e) {
             System.err.println("Can't persist users");
             System.err.println(e.getMessage());
@@ -155,7 +155,7 @@ public class Main {
         //        }
         //        return new LinkedList<>();
         List<User> result = new ArrayList<>();
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:users.db")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:output/users.db")) {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(10);
             ResultSet rs = statement.executeQuery("select id, login, name, email from users");
