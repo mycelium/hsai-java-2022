@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <Appenders>
+         <Console name="CONSOLE" target="SYSTEM_OUT">
+              <PatternLayout>%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n</PatternLayout>
+         </Console>
+
+         <RollingFile name="ROLLING_FILE" fileName="logFile4FPJ.log" filePattern = "logFile4FPJ.%d{yyyy-MM-dd}.%i.log">
+              <Policies>
+                   <SizeBasedTriggeringPolicy size="10MB" />
+              </Policies>
+              <DefaultRolloverStrategy max="5" />
+              <PatternLayout>
+                   <Pattern>%msg%n</Pattern>
+              </PatternLayout>
+         </RollingFile>
+
+         <Async name="ASYNC">
+              <AppenderRef ref="ROLLING_FILE"/>
+         </Async>
+    </Appenders>
+
+</configuration>

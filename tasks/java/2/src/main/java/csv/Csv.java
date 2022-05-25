@@ -1,5 +1,7 @@
 package csv;
 
+import distributions.Distribution;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.File;
@@ -10,7 +12,7 @@ import java.util.stream.IntStream;
 
 public class Csv
 {
-    public static void write(String path,  List<Double> numbers)
+    public static void write(String path, Distribution distribution, Integer size)
     {
         File file = new File(path);
 
@@ -18,11 +20,13 @@ public class Csv
             FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
 
-            String distributionLine = numbers.stream()
-                    .map(number -> number + "")
-                    .collect(Collectors.joining(","));
+//            String distributionLine = numbers.stream()
+//                    .map(number -> number + "")
+//                    .collect(Collectors.joining(","));
 
-            bw.write(distributionLine);
+            for (int i = 0; i < size; i++) {
+                bw.write(String.format("%f,", distribution.nextValue()));
+            }
         } catch (IOException exception) {
             exception.printStackTrace();
         }
