@@ -1,5 +1,3 @@
-package homework_scala1
-
 object Main {
   def main(args: Array[String]) = {
     println("Pascal's Triangle")
