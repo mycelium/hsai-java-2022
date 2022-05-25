@@ -1,0 +1,3 @@
+-i <args>	input file
+-o <args>	output file
+-w <args>	string of symbols you want to count
