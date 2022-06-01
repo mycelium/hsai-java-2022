@@ -12,8 +12,6 @@ object Main {
       println()
     }
 
-
-
     //2
 
     println(balance(")(".toList))
@@ -24,12 +22,7 @@ object Main {
     println(balance("()".toList))
     println(balance("".toList))
 
-
-
-
     //3
-
-
 
     print("money: 5; coins: 2, 3; result:")
     println(countChange(5, List(2, 3)))
@@ -37,8 +30,6 @@ object Main {
     println(countChange(5, List(1, 2, 3)))
     print("money: 15; coins: 1, 2, 5; result:")
     println(countChange(15, List(1, 2, 5)))
-    print("money: 22; coins: 1, 2, 3, 4, 5; result:")
-    println(countChange(22, List(1, 2, 3, 4, 5)))
   }
 
   /**
@@ -55,22 +46,13 @@ object Main {
    * Exercise 2 Parentheses Balancing
    */
   def balance(chars: List[Char]): Boolean = {
-    val st = new mutable.Stack[Char]()
-    for ( i <- 0 to (chars.length - 1)) {
-      if (chars(i) == '(') {
-        st.push(chars(i))
-      }
-      if(chars(i) == ')'){
-        if(st.isEmpty)
-          return false
-        else
-          st.pop()
-      }
+    def helpToBalance(chars: List[Char], counter: Int): Boolean = chars match {
+      case Nil => counter == 0
+      case '(' :: ls => helpToBalance(ls, counter + 1)
+      case ')' :: ls => if (counter > 0) helpToBalance(ls, counter - 1) else false
+      case _ :: ls => helpToBalance(ls, counter)
     }
-    if(st.isEmpty)
-      true
-    else
-      false
+    helpToBalance(chars, 0)
   }
 
   /**
@@ -86,7 +68,7 @@ object Main {
     else if(money < 0 || coins.isEmpty)
       0
     else {
-      countChange(money-coins.head,coins)+countChange(money,coins.tail)
+      countChange(money - coins.head, coins) + countChange(money, coins.tail)
     }
   }
 }
