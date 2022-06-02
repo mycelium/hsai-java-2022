@@ -1,5 +1,6 @@
 package Output;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 public abstract class Writer {
@@ -8,6 +9,6 @@ public abstract class Writer {
 
     Writer(String path){pathToFile = path;}
 
-    public abstract void write(String s);
+    public abstract void write(List<Double> a);
 
 }

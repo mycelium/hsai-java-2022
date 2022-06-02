@@ -8,8 +8,6 @@ public class PoissonGenerator extends Generator {
         if (lambda > 0)
             this.mean = lambda;
         else {
-            //Logger log = LogManager.getLogger(PoissonGenerator.class);
-            //log.warn("Lambda must be positive. Setting to 1.0 by default");
             this.mean = 1.0;
         }
     }
@@ -24,14 +22,4 @@ public class PoissonGenerator extends Generator {
         } while (p > L);
         return k - 1;
     }
-    @Override
-    public String genValues(){
-        log.info("Values generation started");
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < numberOfValues; i++) {
-            stringBuilder.append((i + 1) + "," + Double.valueOf(genValue()).toString() + "\n");
-        }
-        log.info("Values generation finished");
-        return stringBuilder.toString();
-    };
 }

@@ -26,8 +26,6 @@ public class Input {
         opts.addRequiredOption("t", "type", true, "Distribution type");
 
         Option paramsOpt = new Option("p", "parameters", true, "Distribution parameters");
-//        paramsOpt.setArgs(2);
-//        paramsOpt.setValueSeparator(',');
         paramsOpt.setRequired(true);
         opts.addOption(paramsOpt);
 
@@ -44,13 +42,11 @@ public class Input {
             System.exit(1);
         }
 
-
         typeD = cmd.getOptionValue('t');
         params = cmd.getOptionValue('p');
-        num = Integer.valueOf(cmd.getOptionValue('n'));
+        num = Integer.parseInt(cmd.getOptionValue('n'));
         format = cmd.getOptionValue('f');
         outputDir = cmd.getOptionValue('o');
-
 
         log.info("Parsing finished");
     }

@@ -13,15 +13,4 @@ public class NormalGenerator extends Generator {
     public double genValue() {
         return v * random.nextGaussian() + u;
     }
-
-    @Override
-    public String genValues(){
-        log.info("Values generation started");
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < numberOfValues; i++) {
-            stringBuilder.append((i + 1) + "," + Double.valueOf(genValue()).toString() + "\n");
-        }
-        log.info("Values generation finished");
-        return stringBuilder.toString();
-    };
 }

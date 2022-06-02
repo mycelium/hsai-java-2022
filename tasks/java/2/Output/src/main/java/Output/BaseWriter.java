@@ -1,14 +1,17 @@
 package Output;
 
 import java.sql.*;
-
+import java.util.List;
 
 
 public class BaseWriter extends Writer{
     private Connection conn;
-    private Statement statmt;
-    public BaseWriter(String path){
+    private Statement statement;
+    public BaseWriter(String path) {
         super(path);
+    }
+
+    void openDataBase(){
         conn = null;
         try {
             Class.forName("org.sqlite.JDBC");
@@ -16,7 +19,7 @@ public class BaseWriter extends Writer{
             e.printStackTrace();
         }
         try {
-            conn = DriverManager.getConnection("jdbc:sqlite:" + pathToFile);
+            conn = DriverManager.getConnection("jdbc:sqlite:" + pathToFile + "\\base");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -24,12 +27,13 @@ public class BaseWriter extends Writer{
         log.info("Connection complete");
 
         try {
-            statmt = conn.createStatement();
+            statement = conn.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         try {
-            statmt.execute("CREATE TABLE base (id INTEGER, value REAL);");
+            statement.execute("DROP TABLE IF EXISTS base;");
+            statement.execute("CREATE TABLE base (value REAL);");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -37,16 +41,20 @@ public class BaseWriter extends Writer{
 
     }
     @Override
-    public void write(String s) {
+    public void write(List<Double> l) {
+        openDataBase();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        l.forEach((elem) -> stringBuilder.append(elem).append(","));
         log.info("Filling base started");
 
-        String[] lines = s.split("\\n");
+        String s = stringBuilder.toString();
+
+        String[] lines = s.split(",");
         try (PreparedStatement statement = conn.prepareStatement(
-                "INSERT INTO base (id, value) VALUES(?,?)")) {
+                "INSERT INTO base (value) VALUES(?)")) {
             for (int i = 0; i < lines.length; i++) {
-                String[] qwe = lines[i].split(",");
-                statement.setLong(1, Integer.valueOf(qwe[0]));
-                statement.setDouble(2, Double.valueOf(qwe[1]));
+                statement.setDouble(1 , Double.parseDouble(lines[i]));
                 statement.execute();
             }
         } catch (SQLException e) {
@@ -60,7 +68,7 @@ public class BaseWriter extends Writer{
             e.printStackTrace();
         }
         try {
-            statmt.close();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
